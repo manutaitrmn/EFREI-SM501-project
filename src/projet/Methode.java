@@ -281,6 +281,15 @@ public class Methode
 				Debut.add(Integer.parseInt(Ligne[0]));
 			}
 		}
+		ArrayList<Integer> Idsupp = new ArrayList<Integer>();
+		Idsupp = Methode.suppId(Debut, Fin);
+		
+		for ( int delete = 0 ; delete < Idsupp.size() ; delete ++)
+		{
+			Debut.remove(Idsupp.get(delete));
+			Fin.remove(Idsupp.get(delete));
+		}
+		
 		
 		int count =0;
 		
@@ -364,7 +373,7 @@ public class Methode
 		return Afficher;
 	}
 	
-	public static ArrayList<Integer> suppcircuit(ArrayList<Integer> Debut , ArrayList<Integer> Fin) throws IOException
+	public static ArrayList<Integer> suppId(ArrayList<Integer> Debut , ArrayList<Integer> Fin) throws IOException
 	{
 		ArrayList<Integer> A = new ArrayList<Integer>();
 		for(int i = 0 ; i < Debut.size(); i++)
