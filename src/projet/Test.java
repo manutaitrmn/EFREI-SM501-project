@@ -2,6 +2,7 @@ package projet;
 
 import java.io.IOException;
 import java.util.Scanner;
+import java.io.File;
 
 public class Test 
 {
@@ -16,7 +17,7 @@ public class Test
 		
 		while (nb != 0)
 		{
-			String M = "G:\\Théorie des graphes\\Projet\\Graphe" + nb + ".txt"; // On cherche un graphe.txt
+			String M = new File("").getAbsolutePath()+"/src/projet/Graphe"+nb+ ".txt"; // On cherche un graphe.txt
 			
 			System.out.println("Lecture du graphe sur fichier");
 			Methode.Lire(M);

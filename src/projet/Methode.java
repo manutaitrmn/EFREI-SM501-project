@@ -240,6 +240,15 @@ public class Methode
 		Bread.close();
 	}
 	
+	
+	public static void circuit(String M)
+	{
+		
+	}
+	
+	
+	
+	
 	public static void rang(String M) throws IOException
 	{
 		int s = Methode.sommet(M);
