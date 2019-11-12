@@ -21,13 +21,15 @@ public class Test
 			
 			System.out.println("Lecture du graphe sur fichier");
 			Methode.Lire(M);
-		
+			
+			System.out.println("");
 			System.out.println("Représentation du graphe sous forme matricielle");
 			Methode.adjacence(M);
 			Methode.valeurs(M);
 			
-			
+			System.out.println("--------------------------------------------------------------------");
 			System.out.println("Calcul des rangs");
+			Methode.rang(M);
 			
 
 			

@@ -117,7 +117,7 @@ public class Methode
 
 		}
 		int k=n;
-		System.out.println("Matrice d'adjacence");
+		System.out.println("  Matrice d'adjacence");
 		System.out.print(" ");
 		while (k > 1 )
 		{
@@ -199,7 +199,8 @@ public class Methode
 			}
 		}
 		int k=n;
-		System.out.println("Matrice des valeurs");
+		System.out.println("");
+		System.out.println("  Matrice des valeurs");
 		System.out.print(" ");
 		while (k > 1 )
 		{
@@ -281,52 +282,68 @@ public class Methode
 				Debut.add(Integer.parseInt(Ligne[0]));
 			}
 		}
+		
 		ArrayList<Integer> Idsupp = new ArrayList<Integer>();
 		Idsupp = Methode.suppId(Debut, Fin);
-		
-		for ( int delete = 0 ; delete < Idsupp.size() ; delete ++)
+		//On supprime le circuit
+		int z = 0 ;
+		for ( int delete = 0 ; delete < Debut.size() ; delete ++)
 		{
-			Debut.remove(Idsupp.get(delete));
-			Fin.remove(Idsupp.get(delete));
+			int u = Idsupp.get(z);
+			if ( u == delete)
+			{
+				Debut.remove(delete);
+				Fin.remove(delete);
+				z++;
+			}
 		}
 		
-		
 		int count =0;
-		
-		int verif =0;
+		ArrayList<Integer> val = new ArrayList<Integer>();
+		for(int w = 0 ; w < Methode.sommet(M) ; w++)
+		{
+			val.add(w);
+		}
 		
 		while(Debut.size() != 0 )
 		{
+			ArrayList<Integer> entree = new ArrayList<Integer>();
+			entree = Methode.entree(Debut, Fin);
 			System.out.println(" Méthode d’élimination des points d’entrée");
-			System.out.println("Rang courant = " + compteur);
-			System.out.println(Methode.entree(Debut, Fin));
-			
-			int xyz=Methode.id(Debut, Fin).size();
-			
-			for (int i=0 ; i < Debut.size(); i++)
+			System.out.println("Rang courant = " + count);
+			System.out.println("Points d'entrée :");
+			System.out.println(entree);
+			System.out.println("");
+			count ++;
+			for (int x = 0 ; x < Debut.size(); x++)
 			{
-				for(int j =0 ; j < xyz ; j++)
+				for ( int y = 0 ; y < entree.size(); y++)
 				{
-					if ( i == Methode.id(Debut, Fin).get(j))
+					if ( Debut.get(x) == entree.get(y))
 					{
-						verif = 1;
+						for(int p = 0 ; p < val.size( ); p++)
+						{
+							if(Debut.get(x) == val.get(p))
+							{
+								val.remove(p);
+							}
+						}
+						Debut.remove(x);
+						Fin.remove(x);
+						
+						if (x != 0)
+						{
+							x = x - 1;
+						}
 					}
-				}
-				if( verif == 0)
-				{
-					Debut.remove(i);
-					Fin.remove(i);
-					i=i-1;
-				}
-				else
-				{
-					verif = 0;
 				}
 			}
 			
-			compteur++;
-			
 		}
+		System.out.println("Rang courant = " + count);
+		System.out.println("Points d'entrée :");
+		System.out.println(val);
+		System.out.println("");
 		
 		
 		Bread.close();
@@ -347,6 +364,23 @@ public class Methode
 			if (v == 0)
 			{
 				Afficher.add(Debut.get(i));
+			}
+			else
+			{
+				v = 0;
+			}
+		}
+		for ( int r = 0 ; r < Afficher.size(); r++)
+		{
+			for ( int s = 0 ; s < Afficher.size() ; s++)
+			{
+				if( r != s)
+				{
+					if ( Afficher.get(r) == Afficher.get(s))
+					{
+						Afficher.remove(s);
+					}
+				}
 			}
 		}
 		return Afficher;
@@ -388,6 +422,17 @@ public class Methode
 					}
 				}
 			}
+		}
+		int c = 0;
+		for(int a = 0 ; a < A.size();a++)
+		{
+			if ( c == 1)
+			{
+				A.remove(a);
+				a = a -1;
+				c = 0;
+			}
+			c=1;
 		}
 		return A;
 	}
