@@ -27,7 +27,12 @@ public class Test
 			Methode.adjacence(M);
 			Methode.valeurs(M);
 			
-			System.out.println("--------------------------------------------------------------------");
+			System.out.println("");
+			System.out.println("Détection de circuit");
+			Methode.circuit(M);
+			
+			
+			System.out.println("");
 			System.out.println("Calcul des rangs");
 			Methode.rang(M);
 			

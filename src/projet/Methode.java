@@ -242,9 +242,83 @@ public class Methode
 	}
 	
 	
-	public static void circuit(String M)
+	public static void circuit(String M) throws IOException
 	{
+		int compteur=1;
+		BufferedReader Bread = null;
+		FileReader Fread = null;
+		String Lecteur;
+		Fread = new FileReader(M);
+		Bread = new BufferedReader(Fread);
 		
+		ArrayList<Integer> Fin = new ArrayList<Integer>();
+		ArrayList<Integer> Debut = new ArrayList<Integer>();
+		
+		while ((Lecteur = Bread.readLine()) != null) 
+		{
+			if (compteur==1 || compteur== 2)
+			{
+				compteur++;
+			}
+			else
+			{
+				String[] Ligne = Lecteur.split(" ");
+				Fin.add(Integer.parseInt(Ligne[1]));
+				Debut.add(Integer.parseInt(Ligne[0]));
+			}
+		}
+		
+		ArrayList<Integer> val = new ArrayList<Integer>();
+		for(int w = 0 ; w < Methode.sommet(M) ; w++)
+		{
+			val.add(w);
+		}
+		
+		int v=0;
+		
+		while(Methode.entree(Debut, Fin).size() > 0)
+		{
+			System.out.println("Points d'entrée:");
+			System.out.println(Methode.entree(Debut, Fin));
+			
+			for(int i = 0 ; i < Methode.entree(Debut, Fin).size() ; i++)
+			{
+				for(int j =0 ; j < Debut.size(); j++)
+				{
+					for(int x=0 ; x< val.size(); x++)
+					{
+						if(val.get(x) == Methode.entree(Debut, Fin).get(i))
+						{
+							val.remove(x);
+						}
+					}
+					if(Methode.entree(Debut, Fin).get(i) == Debut.get(j))
+					{
+						Debut.remove(j);
+						Fin.remove(j);
+					}
+				}
+			}
+			System.out.println("Suppression des points d’entrée");
+			System.out.println("Sommets restant :");
+			System.out.println(val);
+		}
+		
+		if(val.size() != 0)
+		{
+			System.out.println("Points d'entrée:");
+			System.out.println("Aucun");
+			System.out.println("Le graphe contient au moins un circuit.");
+		}
+		else
+		{
+			System.out.println("Points d'entrée:");
+			System.out.println("Aucun");
+			System.out.println("Le graphe ne contient pas au moins un circuit.");
+		}
+	
+		Bread.close();
+
 	}
 	
 	
@@ -305,11 +379,11 @@ public class Methode
 			val.add(w);
 		}
 		
+		System.out.println(" Méthode d’élimination des points d’entrée");
 		while(Debut.size() != 0 )
 		{
 			ArrayList<Integer> entree = new ArrayList<Integer>();
 			entree = Methode.entree(Debut, Fin);
-			System.out.println(" Méthode d’élimination des points d’entrée");
 			System.out.println("Rang courant = " + count);
 			System.out.println("Points d'entrée :");
 			System.out.println(entree);
