@@ -503,4 +503,17 @@ public class Methode
 		}
 		return A;
 	}
+	
+	// Entre les commentaires sera votre espace de code. Comme ça on évite les conflits
+	
+	
+	// Manutai
+	
+	// Fin Manutai
+	
+	// Christine
+	
+	// Fin Christine
+	
+	
 }
