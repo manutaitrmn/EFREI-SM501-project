@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Methode 
 {
-	// Méthode permettant de lire le graphe
+	// Methode permettant de lire le graphe
 	public static void Lire(String M) throws IOException
 	{
 		int compteur=1;
