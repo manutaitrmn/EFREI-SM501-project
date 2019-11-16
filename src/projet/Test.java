@@ -11,14 +11,14 @@ public class Test
 	{
 		try
 		{
-		System.out.println("Quel graphe voulez vous étudier? ( -1 == NON )");
-		Scanner action = new Scanner(System.in);
+		System.out.println("Quel graphe voulez vous étudier? ( -1 == NON )");// Demande a l'utilisateur de choisir le graphe
+		Scanner action = new Scanner(System.in); // Permet de recuperer les informations ecrites par l'utilisateur
 		int nb = action.nextInt();
 		
 		while (nb != -1)
 		{
-			String M = new File("").getAbsolutePath()+"/src/projet/Graphe"+nb+ ".txt"; // On cherche un graphe.txt
-			
+			String M = new File("").getAbsolutePath()+"/src/projet/Graphe"+nb+ ".txt"; // Permet de recuperer le chemin du dossier dans lequel se trouve les graphes a etudier
+
 			System.out.println("Lecture du graphe sur fichier");
 			Methode.Lire(M);
 			
@@ -40,7 +40,7 @@ public class Test
 			
 			System.out.println("Quel graphe voulez vous afficher?");
 			Scanner number = new Scanner(System.in);
-			nb = number.nextInt(); // Si nb == -1 On arrête la boucle
+			nb = number.nextInt(); // Si nb == -1: Arret de la boucle
 			
 		}
 		
