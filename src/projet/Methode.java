@@ -31,6 +31,136 @@ public class Methode {
 
 		Bread.close();
 	}
+	
+	
+	// Creation de la matrice d'adjacence du graphe
+	public static void adjacence(String M) throws IOException {
+		int n = Methode.arc(M);
+		int compteur = 1;
+		BufferedReader Bread = null;
+		FileReader Fread = null;
+		String Lecteur;
+		Fread = new FileReader(M);
+		Bread = new BufferedReader(Fread);
+
+		String[][] T = new String[n][n];
+		for (int i = 0 ; i < T.length ; i++) {
+			for (int j=0 ; j < T[i].length ; j++) {
+				T[i][j] = "    F";
+			}
+		}
+		while ((Lecteur = Bread.readLine()) != null) {
+			if (compteur == 1 || compteur == 2) {
+				compteur++;
+			} else {
+				String[] Ligne = Lecteur.split(" ");
+				T[Integer.parseInt(Ligne[0])][Integer.parseInt(Ligne[1])]= "    V";
+			}
+		}
+		
+		int k = n;
+		System.out.println("  Matrice d'adjacence");
+		System.out.print(" ");
+		while (k > 1 ) {
+			for( int z = 0 ; z < n ; z++) {
+				if( z != n-1) {
+					int a = n-k;
+					System.out.print("    "+ a);
+					k=k-1;
+				} else {
+					int a = n-k;
+					System.out.println("    "+ a);
+					k=k-1;
+				}
+			}
+		}
+			
+		int u = n;
+		while (u > 0) {
+			int r = n-u;
+			System.out.print(r);
+			u=u-1;
+			for (int x = 0 ; x < n ; x++) {
+				if (x != n-1) {
+				System.out.print(T[r][x]);
+				} else {
+					System.out.println(T[r][r]);
+				}
+			}
+		}
+			
+		Bread.close();
+	}
+
+
+	// Creation de la matrice des valeurs du graphe
+	public static void valeurs(String M) throws IOException {
+		int n = Methode.arc(M);
+		int compteur = 1;
+		BufferedReader Bread = null;
+		FileReader Fread = null;
+		String Lecteur;
+		Fread = new FileReader(M);
+		Bread = new BufferedReader(Fread);
+
+		String[][] T = new String[n][n];
+		for (int i = 0 ; i < T.length ; i++) {
+			for (int j=0 ; j < T[i].length ; j++) {
+				T[i][j] = "    *";
+			}
+		}
+
+		while ((Lecteur = Bread.readLine()) != null) {
+			if (compteur==1 || compteur== 2) {
+				compteur++;
+			} else {
+				String[] Ligne = Lecteur.split(" ");
+				if (Ligne[2].length() == 1) {
+					T[Integer.parseInt(Ligne[0])][Integer.parseInt(Ligne[1])]= "    "+ Ligne[2];
+				} else {
+					T[Integer.parseInt(Ligne[0])][Integer.parseInt(Ligne[1])]= "   "+ Ligne[2];
+				}
+			}
+		}
+			
+		int k=n;
+		System.out.println("");
+		System.out.println("  Matrice des valeurs");
+		System.out.print(" ");
+		
+		while (k > 1 ) {
+			for( int z = 0 ; z < n ; z++) {
+				if( z != n-1) {
+					int a= n-k;
+					System.out.print("    "+ a);
+					k=k-1;
+				} else {
+					int a= n-k;
+					System.out.println("    "+ a);
+					k=k-1;
+				}
+			}
+		}
+		
+		int u = n;
+		while (u > 0) {
+			int r = n - u;
+			System.out.print(r);
+			u=u-1;
+			for (int x = 0 ; x < n ; x++) {
+				if (x != n-1) {
+				System.out.print(T[r][x]);
+				} else {
+					System.out.println(T[r][r]);
+				}
+			}
+		}
+			
+		Bread.close();
+	}
+
+	
+	
 
 	// Calcul des sommets du graphe
 	public static int sommet(String M) throws IOException {
@@ -75,135 +205,6 @@ public class Methode {
 		Bread.close();
 		return n;
 
-	}
-
-	
-	// Creation de la matrice d'adjacence du graphe
-	public static void adjacence(String M) throws IOException {
-		int n = Methode.arc(M);
-		int compteur = 1;
-		BufferedReader Bread = null;
-		FileReader Fread = null;
-		String Lecteur;
-		Fread = new FileReader(M);
-		Bread = new BufferedReader(Fread);
-
-		String[][] T = new String[n][n];
-		for (int i = 0 ; i < T.length ; i++) {
-			for (int j=0 ; j < T[i].length ; j++) {
-				T[i][j] = "    F";
-			}
-		}
-
-		while ((Lecteur = Bread.readLine()) != null) {
-			if (compteur == 1 || compteur == 2) {
-				compteur++;
-			} else {
-				String[] Ligne = Lecteur.split(" ");
-				T[Integer.parseInt(Ligne[0])][Integer.parseInt(Ligne[1])]= "    V";
-			}
-
-		}
-		
-		int k = n;
-		System.out.println("  Matrice d'adjacence");
-		System.out.print(" ");
-		while (k > 1 ) {
-			for( int z = 0 ; z < n ; z++) {
-				if( z != n-1) {
-					int a = n-k;
-					System.out.print("    "+ a);
-					k=k-1;
-				} else {
-					int a = n-k;
-					System.out.println("    "+ a);
-					k=k-1;
-				}
-			}
-		}
-		
-		int u = n;
-		while (u > 0) {
-			int r = n-u;
-			System.out.print(r);
-			u=u-1;
-			for (int x = 0 ; x < n ; x++) {
-				if (x != n-1) {
-				System.out.print(T[r][x]);
-				} else {
-					System.out.println(T[r][r]);
-				}
-			}
-		}
-		
-		Bread.close();
-	}
-
-
-	// Creation de la matrice des valeurs du graphe
-	public static void valeurs(String M) throws IOException {
-		int n = Methode.arc(M);
-		int compteur = 1;
-		BufferedReader Bread = null;
-		FileReader Fread = null;
-		String Lecteur;
-		Fread = new FileReader(M);
-		Bread = new BufferedReader(Fread);
-
-		String[][] T = new String[n][n];
-		for (int i = 0 ; i < T.length ; i++) {
-			for (int j=0 ; j < T[i].length ; j++) {
-				T[i][j] = "    *";
-			}
-		}
-
-		while ((Lecteur = Bread.readLine()) != null) {
-			if (compteur==1 || compteur== 2) {
-				compteur++;
-			} else {
-				String[] Ligne = Lecteur.split(" ");
-				if (Ligne[2].length() == 1) {
-					T[Integer.parseInt(Ligne[0])][Integer.parseInt(Ligne[1])]= "    "+ Ligne[2];
-				} else {
-					T[Integer.parseInt(Ligne[0])][Integer.parseInt(Ligne[1])]= "   "+ Ligne[2];
-				}
-			}
-		}
-		
-		int k=n;
-		System.out.println("");
-		System.out.println("  Matrice des valeurs");
-		System.out.print(" ");
-		
-		while (k > 1 ) {
-			for( int z = 0 ; z < n ; z++) {
-				if( z != n-1) {
-					int a= n-k;
-					System.out.print("    "+ a);
-					k=k-1;
-				} else {
-					int a= n-k;
-					System.out.println("    "+ a);
-					k=k-1;
-				}
-			}
-		}
-		
-		int u = n;
-		while (u > 0) {
-			int r = n - u;
-			System.out.print(r);
-			u=u-1;
-			for (int x = 0 ; x < n ; x++) {
-				if (x != n-1) {
-				System.out.print(T[r][x]);
-				} else {
-					System.out.println(T[r][r]);
-				}
-			}
-		}
-		
-		Bread.close();
 	}
 
 	
