@@ -42,7 +42,7 @@ public class Methode
 	public static int sommet(String M) throws IOException
 	{
 		int n = 0;
-		int compteur=1;
+		int compteur = 1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
 		String Lecteur;
@@ -50,7 +50,7 @@ public class Methode
 		Bread = new BufferedReader(Fread);
 		while ((Lecteur = Bread.readLine()) != null) 
 		{
-			if (compteur==1)
+			if (compteur == 1)
 			{
 				n = Integer.parseInt(Lecteur);
 				compteur++;
@@ -64,7 +64,7 @@ public class Methode
 	public static int arc(String M) throws IOException
 	{
 		int n = 0;
-		int compteur=1;
+		int compteur = 1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
 		String Lecteur;
@@ -72,7 +72,7 @@ public class Methode
 		Bread = new BufferedReader(Fread);
 		while ((Lecteur = Bread.readLine()) != null) 
 		{
-			if (compteur==1)
+			if (compteur == 1)
 			{
 				compteur++;
 			}
@@ -90,7 +90,7 @@ public class Methode
 	public static void adjacence(String M) throws IOException
 	{
 		int n = Methode.arc(M);
-		int compteur=1;
+		int compteur = 1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
 		String Lecteur;
@@ -108,7 +108,7 @@ public class Methode
 		
 		while ((Lecteur = Bread.readLine()) != null) 
 		{
-			if (compteur==1 || compteur== 2)
+			if (compteur == 1 || compteur == 2)
 			{
 				compteur++;
 			}
@@ -119,7 +119,7 @@ public class Methode
 			}
 
 		}
-		int k=n;
+		int k = n;
 		System.out.println("  Matrice d'adjacence");
 		System.out.print(" ");
 		while (k > 1 )
@@ -128,13 +128,13 @@ public class Methode
 			{
 				if( z != n-1)
 				{
-					int a= n-k;
+					int a = n-k;
 					System.out.print("    "+ a);
 					k=k-1;
 				}
 				else
 				{
-					int a= n-k;
+					int a = n-k;
 					System.out.println("    "+ a);
 					k=k-1;
 				}
@@ -143,7 +143,7 @@ public class Methode
 		int u = n;
 		while (u > 0)
 		{
-			int r= n-u;
+			int r = n-u;
 			System.out.print(r);
 			u=u-1;
 			for (int x = 0 ; x < n ; x++)
@@ -166,7 +166,7 @@ public class Methode
 	public static void valeurs(String M) throws IOException
 	{
 		int n = Methode.arc(M);
-		int compteur=1;
+		int compteur = 1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
 		String Lecteur;
@@ -226,7 +226,7 @@ public class Methode
 		int u = n;
 		while (u > 0)
 		{
-			int r= n-u;
+			int r = n - u;
 			System.out.print(r);
 			u=u-1;
 			for (int x = 0 ; x < n ; x++)
@@ -247,7 +247,7 @@ public class Methode
 	// Detection de circuits
 	public static void circuit(String M) throws IOException
 	{
-		int compteur=1;
+		int compteur = 1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
 		String Lecteur;
@@ -259,7 +259,7 @@ public class Methode
 		
 		while ((Lecteur = Bread.readLine()) != null) 
 		{
-			if (compteur==1 || compteur== 2)
+			if (compteur == 1 || compteur == 2)
 			{
 				compteur++;
 			}
@@ -272,6 +272,7 @@ public class Methode
 		}
 		
 		ArrayList<Integer> val = new ArrayList<Integer>();
+		
 		for(int w = 0 ; w < Methode.sommet(M) ; w++)
 		{
 			val.add(w);
@@ -282,7 +283,7 @@ public class Methode
 		while(Methode.entree(Debut, Fin).size() > 0)
 		{
 			ArrayList<Integer> La = new ArrayList<Integer>();
-			System.out.println("Points d'entrée:");
+			System.out.println("Points d'entrï¿½e:");
 			La = Methode.entree(Debut, Fin);
 			System.out.println(Methode.entree(Debut, Fin));
 			
@@ -304,20 +305,17 @@ public class Methode
 					}
 				}
 			}
-			System.out.println("Suppression des points d’entrée");
+			System.out.println("Suppression des points dï¿½entrï¿½e");
 			System.out.println("Sommets restant :");
 			System.out.println(val);
 		}
 		
-		if(val.size() != 0)
-		{
-			System.out.println("Points d'entrée:");
+		if(val.size() != 0) {
+			System.out.println("Points d'entrï¿½e:");
 			System.out.println("Aucun");
 			System.out.println("Le graphe contient au moins un circuit.");
-		}
-		else
-		{
-			System.out.println("Points d'entrée:");
+		} else {
+			System.out.println("Points d'entrï¿½e:");
 			System.out.println("Aucun");
 			System.out.println("Le graphe NE contient PAS au moins un circuit.");
 		}
@@ -346,18 +344,12 @@ public class Methode
 		
 		Integer[][] Tab = new Integer[s][a];
 		
-		while ((Lecteur = Bread.readLine()) != null) 
-		{
-			if (compteur==1 || compteur== 2)
-			{
+		while ((Lecteur = Bread.readLine()) != null) {
+			if (compteur==1 || compteur== 2) {
 				compteur++;
-			}
-			else
-			{
+			} else {
 				String[] Ligne = Lecteur.split(" ");
-				
 				Fin.add(Integer.parseInt(Ligne[1]));
-				
 				Debut.add(Integer.parseInt(Ligne[0]));
 			}
 		}
@@ -367,58 +359,49 @@ public class Methode
 		Idsupp = Methode.suppId(Debut, Fin);
 		//On supprime le circuit
 		
-		if (Idsupp.size() != 0 )
-		{
+		if (Idsupp.size() != 0 ) {
 			int z = 0 ;
-			for ( int delete = 0 ; delete < Debut.size() ; delete ++)
-			{
+			for ( int delete = 0 ; delete < Debut.size() ; delete ++) {
 				int u = Idsupp.get(z);
-				if ( u == delete)
-				{
+				if ( u == delete) {
 					Debut.remove(delete);
 					Fin.remove(delete);
 					z++;
 				}
 			}
 		}
+		
 		System.out.println("Id" + Idsupp );
 		
-		int count =0;
+		int count = 0;
 		ArrayList<Integer> val = new ArrayList<Integer>();
-		for(int w = 0 ; w < Methode.sommet(M) ; w++)
-		{
+		
+		for(int w = 0 ; w < Methode.sommet(M) ; w++) {
 			val.add(w);
 		}
 		
-		System.out.println(" Méthode d’élimination des points d’entrée");
+		System.out.println(" Mï¿½thode dï¿½ï¿½limination des points dï¿½entrï¿½e");
 		
-		while(Debut.size() != 0 )
-		{
+		while(Debut.size() != 0 ) {
 			ArrayList<Integer> entree = new ArrayList<Integer>();
 			entree = Methode.entree(Debut, Fin);
 			System.out.println("Rang courant = " + count);
-			System.out.println("Points d'entrée :");
+			System.out.println("Points d'entrï¿½e :");
 			System.out.println(entree);
 			System.out.println("");
 			count ++;
-			for (int x = 0 ; x < Debut.size(); x++)
-			{
-				for ( int y = 0 ; y < entree.size(); y++)
-				{
-					if ( Debut.get(x) == entree.get(y))
-					{
-						for(int p = 0 ; p < val.size( ); p++)
-						{
-							if(Debut.get(x) == val.get(p))
-							{
+			for (int x = 0 ; x < Debut.size(); x++) {
+				for ( int y = 0 ; y < entree.size(); y++) {
+					if ( Debut.get(x) == entree.get(y)) {
+						for(int p = 0 ; p < val.size( ); p++) {
+							if(Debut.get(x) == val.get(p)) {
 								val.remove(p);
 							}
 						}
 						Debut.remove(x);
 						Fin.remove(x);
 						
-						if (x != 0)
-						{
+						if (x != 0) {
 							x = x - 1;
 						}
 					}
@@ -426,14 +409,16 @@ public class Methode
 			}
 			
 		}
+		
 		System.out.println("Rang courant = " + count);
-		System.out.println("Points d'entrée :");
+		System.out.println("Points d'entrï¿½e :");
 		System.out.println(val);
 		System.out.println("");
 		
 		
 		Bread.close();
 	}
+	
 	public static ArrayList<Integer> entree(ArrayList<Integer> Debut , ArrayList<Integer> Fin)
 	{
 		ArrayList<Integer> Afficher = new ArrayList<Integer>();
