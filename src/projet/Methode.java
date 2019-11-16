@@ -278,21 +278,23 @@ public class Methode
 		
 		while(Methode.entree(Debut, Fin).size() > 0)
 		{
+			ArrayList<Integer> La = new ArrayList<Integer>();
 			System.out.println("Points d'entrée:");
+			La = Methode.entree(Debut, Fin);
 			System.out.println(Methode.entree(Debut, Fin));
 			
-			for(int i = 0 ; i < Methode.entree(Debut, Fin).size() ; i++)
+			for(int i = 0 ; i < La.size() ; i++)
 			{
 				for(int j =0 ; j < Debut.size(); j++)
 				{
 					for(int x=0 ; x< val.size(); x++)
 					{
-						if(val.get(x) == Methode.entree(Debut, Fin).get(i))
+						if(val.get(x) == La.get(i))
 						{
 							val.remove(x);
 						}
 					}
-					if(Methode.entree(Debut, Fin).get(i) == Debut.get(j))
+					if(La.get(i) == Debut.get(j))
 					{
 						Debut.remove(j);
 						Fin.remove(j);
@@ -314,7 +316,7 @@ public class Methode
 		{
 			System.out.println("Points d'entrée:");
 			System.out.println("Aucun");
-			System.out.println("Le graphe ne contient pas au moins un circuit.");
+			System.out.println("Le graphe NE contient PAS au moins un circuit.");
 		}
 	
 		Bread.close();
@@ -357,20 +359,26 @@ public class Methode
 			}
 		}
 		
+		System.out.println("La00");
 		ArrayList<Integer> Idsupp = new ArrayList<Integer>();
 		Idsupp = Methode.suppId(Debut, Fin);
 		//On supprime le circuit
-		int z = 0 ;
-		for ( int delete = 0 ; delete < Debut.size() ; delete ++)
+		
+		if (Idsupp.size() != 0 )
 		{
-			int u = Idsupp.get(z);
-			if ( u == delete)
+			int z = 0 ;
+			for ( int delete = 0 ; delete < Debut.size() ; delete ++)
 			{
-				Debut.remove(delete);
-				Fin.remove(delete);
-				z++;
+				int u = Idsupp.get(z);
+				if ( u == delete)
+				{
+					Debut.remove(delete);
+					Fin.remove(delete);
+					z++;
+				}
 			}
 		}
+		System.out.println("Id" + Idsupp );
 		
 		int count =0;
 		ArrayList<Integer> val = new ArrayList<Integer>();
@@ -380,6 +388,7 @@ public class Methode
 		}
 		
 		System.out.println(" Méthode d’élimination des points d’entrée");
+		
 		while(Debut.size() != 0 )
 		{
 			ArrayList<Integer> entree = new ArrayList<Integer>();
@@ -498,7 +507,7 @@ public class Methode
 			}
 		}
 		int c = 0;
-		for(int a = 0 ; a < A.size();a++)
+		for(int a = 0 ; a < A.size();a++)// On supp les doublons
 		{
 			if ( c == 1)
 			{
