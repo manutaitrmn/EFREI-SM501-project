@@ -40,7 +40,7 @@ public class Test
 			
 			System.out.println("Quel graphe voulez vous afficher?");
 			Scanner number = new Scanner(System.in);
-			nb = number.nextInt(); // Si nb== 0 On arrête la boucle
+			nb = number.nextInt(); // Si nb == -1 On arrête la boucle
 			
 		}
 		
