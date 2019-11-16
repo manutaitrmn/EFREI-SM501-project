@@ -335,19 +335,24 @@ public class Methode
 			System.out.println(entree);
 			System.out.println("");
 			count ++;
-			for (int x = 0 ; x < Debut.size(); x++) {
-				for ( int y = 0 ; y < entree.size(); y++) {
-					if ( Debut.get(x) == entree.get(y)) {
-						for(int p = 0 ; p < val.size( ); p++) {
-							if(Debut.get(x) == val.get(p)) {
+			for (int x = 0 ; x < Debut.size(); x++)
+			{
+				for ( int y = 0 ; y < entree.size(); y++)
+				{
+					if ( Debut.get(x) == entree.get(y))
+					{
+						for(int p = 0 ; p < val.size( ); p++)
+						{
+							if(Debut.get(x) == val.get(p))
+							{
 								val.remove(p);
 							}
 						}
-						
 						Debut.remove(x);
 						Fin.remove(x);
 						
-						if (x != 0) {
+						if (x != 0)
+						{
 							x = x - 1;
 						}
 					}
