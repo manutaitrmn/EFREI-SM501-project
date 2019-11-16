@@ -331,7 +331,7 @@ public class Methode
 			ArrayList<Integer> entree = new ArrayList<Integer>();
 			entree = Methode.entree(Debut, Fin);
 			System.out.println("Rang courant = " + count);
-			System.out.println("Points d'entrÃ©e :");
+			System.out.println("Points d'entree :");
 			System.out.println(entree);
 			System.out.println("");
 			count ++;
@@ -361,7 +361,7 @@ public class Methode
 		}
 		
 		System.out.println("Rang courant = " + count);
-		System.out.println("Points d'entrée :");
+		System.out.println("Points d'entree :");
 		System.out.println(val);
 		System.out.println("");
 		
