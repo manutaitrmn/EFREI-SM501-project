@@ -34,7 +34,7 @@ public class Test
 			
 				System.out.println("Quel graphe voulez vous afficher?");
 				Scanner number = new Scanner(System.in);
-				nb = number.nextInt(); // Si nb == -1 On arr�te la boucle
+				nb = number.nextInt(); // Si nb == -1 On arrête la boucle
 			
 			}
 		
