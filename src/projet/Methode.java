@@ -9,8 +9,8 @@ import java.util.ArrayList;
 public class Methode
 {
 	// Methode permettant de lire le graphe
-	public static void Lire(String M) throws IOException
-	{
+	public static void Lire(String M) throws IOException {
+		
 		int compteur=1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
