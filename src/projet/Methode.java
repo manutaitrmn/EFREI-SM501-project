@@ -359,7 +359,7 @@ public class Methode
 			}
 		}
 		
-		System.out.println("La00");
+		System.out.println("Methode.suppId(Debut, Fin)" + Methode.suppId(Debut, Fin));
 		ArrayList<Integer> Idsupp = new ArrayList<Integer>();
 		Idsupp = Methode.suppId(Debut, Fin);
 		//On supprime le circuit
@@ -374,7 +374,10 @@ public class Methode
 				{
 					Debut.remove(delete);
 					Fin.remove(delete);
-					z++;
+					if (z != 0)
+					{
+						z = z - 1;
+					}
 				}
 			}
 		}
