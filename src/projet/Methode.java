@@ -356,7 +356,7 @@ public class Methode
 		}
 		
 		System.out.println("Rang courant = " + count);
-		System.out.println("Points d'entrée :");
+		System.out.println("Points d'entre :");
 		System.out.println(val);
 		System.out.println("");
 		
