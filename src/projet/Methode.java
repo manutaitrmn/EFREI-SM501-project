@@ -253,17 +253,17 @@ public class Methode
 				}
 			}
 			
-			System.out.println("Suppression des points d�entr�e");
+			System.out.println("Suppression des points d'entrée");
 			System.out.println("Sommets restant :");
 			System.out.println(val);
 		}
 		
 		if(val.size() != 0) {
-			System.out.println("Points d'entr�e:");
+			System.out.println("Points d'entrée:");
 			System.out.println("Aucun");
 			System.out.println("Le graphe contient au moins un circuit.");
 		} else {
-			System.out.println("Points d'entr�e:");
+			System.out.println("Points d'entrée:");
 			System.out.println("Aucun");
 			System.out.println("Le graphe NE contient PAS au moins un circuit.");
 		}
@@ -325,13 +325,13 @@ public class Methode
 			val.add(w);
 		}
 		
-		System.out.println(" M�thode d��limination des points d�entr�e");
+		System.out.println(" Méthode d'élimination des points d'entrée");
 		
 		while(Debut.size() != 0 ) {
 			ArrayList<Integer> entree = new ArrayList<Integer>();
 			entree = Methode.entree(Debut, Fin);
 			System.out.println("Rang courant = " + count);
-			System.out.println("Points d'entr�e :");
+			System.out.println("Points d'entrée :");
 			System.out.println(entree);
 			System.out.println("");
 			count ++;
@@ -356,7 +356,7 @@ public class Methode
 		}
 		
 		System.out.println("Rang courant = " + count);
-		System.out.println("Points d'entr�e :");
+		System.out.println("Points d'entrée :");
 		System.out.println(val);
 		System.out.println("");
 		

@@ -9,7 +9,7 @@ public class Test
 
 	public static void main(String[] args) throws IOException {
 		try {
-			System.out.println("Quel graphe voulez vous �tudier? ( -1 == NON )");
+			System.out.println("Quel graphe voulez vous étudier? ( -1 == NON )");
 			Scanner action = new Scanner(System.in);
 			int nb = action.nextInt();
 			
@@ -20,12 +20,12 @@ public class Test
 				Methode.Lire(M);
 			
 				System.out.println("");
-				System.out.println("Repr�sentation du graphe sous forme matricielle");
+				System.out.println("Représentation du graphe sous forme matricielle");
 				Methode.adjacence(M);
 				Methode.valeurs(M);
 			
 				System.out.println("");
-				System.out.println("D�tection de circuit");
+				System.out.println("Détection de circuit");
 				Methode.circuit(M);
 			
 				System.out.println("");
@@ -41,7 +41,7 @@ public class Test
 			System.out.println("Fin");
 			action.close();
 		} catch (Exception e) {
-			System.err.println(e + "Un probl�me est survenu");
+			System.err.println(e + "Un problème est survenu");
 		}
 	}
 
