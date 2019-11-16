@@ -7,57 +7,18 @@ import java.util.ArrayList;
 
 public class Methode 
 {
-	// Methode permettant de lire le graphe
-	public static void read(String M) throws IOException {
-		int compteur=1;
-		BufferedReader Bread = null;
-		FileReader Fread = null;
-		String Lecteur;
-		Fread = new FileReader(M);
-		Bread = new BufferedReader(Fread);
-		
-		while ((Lecteur = Bread.readLine()) != null) {
-			if (compteur==1) {
-				System.out.println(Lecteur + " sommets");
-				compteur++;
-			} else if (compteur == 2) {
-				System.out.println(Lecteur + " arcs");
-				compteur++;
+	// Lecture du graphe
+	public static void read(ArrayList<Integer[]> graph) throws IOException {
+		System.out.println("* Lecture du graphe");
+		for (int i = 0; i < graph.size(); i++) {
+			if (i == 0) {
+				System.out.println(graph.get(i)[0] + " sommets");
+			} else if (i == 1) {
+				System.out.println(graph.get(i)[0] + " arcs");
 			} else {
-				String[] Ligne = Lecteur.split(" ");
-				System.out.println(Ligne[0] + " -> " + Ligne[1]+ " = " + Ligne[2]);
+				System.out.println(graph.get(i)[0] + " -> " + graph.get(i)[1] + " = " + graph.get(i)[2]);
 			}
 		}
-		
-		Bread.close();
-	}
-	
-	
-	// Conversion du graphe.txt en un tableau à 2D
-	public static ArrayList<Integer[]> convert(String M) throws IOException {
-		
-		ArrayList<Integer[]> converted = new ArrayList<Integer[]>();
-		
-		try (FileReader fr = new FileReader(M); BufferedReader br = new BufferedReader(fr)) {
-			
-			String line;
-			while ((line = br.readLine()) != null) {
-				String[] l = line.split(" ");
-				Integer[] ints = new Integer[l.length];
-				for (int i = 0 ; i < l.length ; i++) {
-					ints[i] = Integer.parseInt(l[i]);
-				}
-				converted.add(ints);
-			}
-			br.close();
-			
-		} catch (IOException e) {
-			
-			System.err.format("IOException: %s%n", e);
-			
-		}
-		
-		return converted;
 	}
 	
 	
