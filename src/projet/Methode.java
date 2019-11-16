@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class Methode 
 {
-	
+	// Methode permettant de lire le graphe
 	public static void Lire(String M) throws IOException {
 		int compteur=1;
 		BufferedReader Bread = null;
@@ -33,7 +33,7 @@ public class Methode
 		Bread.close();
 	}
 	
-	
+	// Calcul des sommets du graphe
 	public static int sommet(String M) throws IOException {
 		int n = 0;
 		int compteur=1;
@@ -54,7 +54,7 @@ public class Methode
 		return n;
 	}
 	
-	
+	// Calcul des arcs du graphe
 	public static int arc(String M) throws IOException {
 		int n = 0;
 		int compteur=1;
@@ -76,7 +76,7 @@ public class Methode
 		return n;
 	}
 	
-	
+	// Creation de la matrice d'adjacence du graphe
 	public static void adjacence(String M) throws IOException {
 		int n = Methode.arc(M);
 		int compteur=1;
@@ -137,7 +137,7 @@ public class Methode
 		Bread.close();
 	}
 	
-	
+	// Creation de la matrice des valeurs du graphe
 	public static void valeurs(String M) throws IOException {
 		int n = Methode.arc(M);
 		int compteur=1;
@@ -202,7 +202,7 @@ public class Methode
 		Bread.close();
 	}
 	
-	
+	// Detection de circuits
 	public static void circuit(String M) throws IOException {
 		int compteur=1;
 		BufferedReader Bread = null;
@@ -271,7 +271,7 @@ public class Methode
 		Bread.close();
 	}
 		
-	
+	// Calcul du rang des sommets
 	public static void rang(String M) throws IOException {
 		int s = Methode.sommet(M);
 		int a = Methode.arc(M);
