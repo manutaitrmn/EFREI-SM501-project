@@ -86,7 +86,7 @@ public class Methode
 	
 	public static void adjacence(String M) throws IOException
 	{
-		int n = Methode.sommet(M);
+		int n = Methode.arc(M);
 		int compteur=1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
@@ -162,7 +162,7 @@ public class Methode
 	
 	public static void valeurs(String M) throws IOException
 	{
-		int n = Methode.sommet(M);
+		int n = Methode.arc(M);
 		int compteur=1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
