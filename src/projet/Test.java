@@ -11,11 +11,11 @@ public class Test
 	{
 		try
 		{
-		System.out.println("Quel graphe voulez vous étudier? ( 0 == NON )");
+		System.out.println("Quel graphe voulez vous étudier? ( -1 == NON )");
 		Scanner action = new Scanner(System.in);
 		int nb = action.nextInt();
 		
-		while (nb != 0)
+		while (nb != -1)
 		{
 			String M = new File("").getAbsolutePath()+"/src/projet/Graphe"+nb+ ".txt"; // On cherche un graphe.txt
 			
