@@ -416,84 +416,74 @@ public class Methode
 		Bread.close();
 	}
 
-	public static ArrayList<Integer> entree(ArrayList<Integer> Debut , ArrayList<Integer> Fin)
-	{
+	public static ArrayList<Integer> entree(ArrayList<Integer> Debut , ArrayList<Integer> Fin) {
+		
 		ArrayList<Integer> Afficher = new ArrayList<Integer>();
 		int v = 0;
-		for(int i = 0 ; i < Debut.size() ; i++)
-		{
-			for(int j = 0 ; j < Fin.size(); j++)
-			{
-				if (Debut.get(i) == Fin.get(j))
-				{
+		for(int i = 0 ; i < Debut.size() ; i++) {
+			for(int j = 0 ; j < Fin.size(); j++) {
+				if (Debut.get(i) == Fin.get(j)) {
 					v = 1;
 				}
 			}
-			if (v == 0)
-			{
+			
+			if (v == 0) {
 				Afficher.add(Debut.get(i));
-			}
-			else
-			{
+			} else {
 				v = 0;
 			}
+			
 		}
-		for ( int r = 0 ; r < Afficher.size(); r++)
-		{
-			for ( int s = 0 ; s < Afficher.size() ; s++)
-			{
-				if( r != s)
-				{
-					if ( Afficher.get(r) == Afficher.get(s))
-					{
+		
+		for (int r = 0 ; r < Afficher.size(); r++) {
+			for (int s = 0 ; s < Afficher.size() ; s++) {
+				if(r != s) {
+					if ( Afficher.get(r) == Afficher.get(s)) {
 						Afficher.remove(s);
 					}
 				}
 			}
 		}
+		
 		return Afficher;
+		
 	}
 
-	public static ArrayList<Integer> id(ArrayList<Integer> Debut , ArrayList<Integer> Fin)
-	{
+	public static ArrayList<Integer> id(ArrayList<Integer> Debut , ArrayList<Integer> Fin) {
+		
 		ArrayList<Integer> Afficher = new ArrayList<Integer>();
 		int v = 0;
-		for(int i = 0 ; i < Debut.size() ; i++)
-		{
-			for(int j = 0 ; j < Fin.size(); j++)
-			{
-				if (Debut.get(i) == Fin.get(j))
-				{
+		for(int i = 0 ; i < Debut.size() ; i++) {
+			for(int j = 0 ; j < Fin.size(); j++) {
+				if (Debut.get(i) == Fin.get(j)) {
 					v = 1;
 				}
 			}
-			if (v == 0)
-			{
+			
+			if (v == 0) {
 				Afficher.add(i);
 			}
 		}
+		
 		return Afficher;
+		
 	}
 
-	public static ArrayList<Integer> suppId(ArrayList<Integer> Debut , ArrayList<Integer> Fin) throws IOException
-	{
+	public static ArrayList<Integer> suppId(ArrayList<Integer> Debut , ArrayList<Integer> Fin) throws IOException {
+		
 		ArrayList<Integer> A = new ArrayList<Integer>();
-		for(int i = 0 ; i < Debut.size(); i++)
-		{
-			for ( int j = 0 ; j < Debut.size(); j++)
-			{
-				if (Debut.get(i)==Fin.get(j))
-				{
-					if(Fin.get(i) == Debut.get(j))
-					{
+		for(int i = 0 ; i < Debut.size(); i++) {
+			for ( int j = 0 ; j < Debut.size(); j++) {
+				if (Debut.get(i)==Fin.get(j)) {
+					if(Fin.get(i) == Debut.get(j)) {
 						A.add(j);
 					}
 				}
 			}
 		}
+		
 		int c = 0;
-		for(int a = 0 ; a < A.size();a++)//Suppression des doublons
-		{
+		for(int a = 0 ; a < A.size();a++) { //Suppression des doublons
 			if (c == 1) {
 				A.remove(a);
 				a = a -1;
