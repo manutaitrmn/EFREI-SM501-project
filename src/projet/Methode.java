@@ -6,11 +6,12 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class Methode 
+public class Methode
 {
-	public static void Lire(String M) throws IOException {
-		
-		int compteur = 1;
+	// Methode permettant de lire le graphe
+	public static void Lire(String M) throws IOException
+	{
+		int compteur=1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
 		String Lecteur;
@@ -28,13 +29,14 @@ public class Methode
 				System.out.println(Ligne[0] + " -> " + Ligne[1]+ " = " + Ligne[2]);
 			}
 		}
-		
+
 		Bread.close();
-		
+
 	}
-	
-	public static int sommet(String M) throws IOException {
-		
+
+	// Calcul des sommets du graphe
+	public static int sommet(String M) throws IOException
+	{
 		int n = 0;
 		int compteur = 1;
 		BufferedReader Bread = null;
@@ -48,14 +50,15 @@ public class Methode
 				compteur++;
 			}
 		}
-		
+
 		Bread.close();
 		return n;
-		
+
 	}
-	
-	public static int arc(String M) throws IOException {
-		
+
+	// Calcul des arcs du graphe
+	public static int arc(String M) throws IOException
+	{
 		int n = 0;
 		int compteur = 1;
 		BufferedReader Bread = null;
@@ -63,7 +66,7 @@ public class Methode
 		String Lecteur;
 		Fread = new FileReader(M);
 		Bread = new BufferedReader(Fread);
-		while ((Lecteur = Bread.readLine()) != null) 
+		while ((Lecteur = Bread.readLine()) != null)
 		{
 			if (compteur == 1)
 			{
@@ -77,12 +80,12 @@ public class Methode
 		}
 		Bread.close();
 		return n;
-		
+
 	}
-	
-	
-	public static void adjacence(String M) throws IOException {
-		
+
+	// Creation de la matrice d'adjacence du graphe
+	public static void adjacence(String M) throws IOException
+	{
 		int n = Methode.arc(M);
 		int compteur = 1;
 		BufferedReader Bread = null;
@@ -90,7 +93,7 @@ public class Methode
 		String Lecteur;
 		Fread = new FileReader(M);
 		Bread = new BufferedReader(Fread);
-		
+
 		String[][] T = new String[n][n];
 		for (int i = 0 ; i < T.length ; i++)
 		{
@@ -99,8 +102,8 @@ public class Methode
 				T[i][j] = "    F";
 			}
 		}
-		
-		while ((Lecteur = Bread.readLine()) != null) 
+
+		while ((Lecteur = Bread.readLine()) != null)
 		{
 			if (compteur == 1 || compteur == 2)
 			{
@@ -154,9 +157,9 @@ public class Methode
 		}
 		Bread.close();
 	}
-	
-	
-	
+
+
+	// Creation de la matrice des valeurs du graphe
 	public static void valeurs(String M) throws IOException
 	{
 		int n = Methode.arc(M);
@@ -166,7 +169,7 @@ public class Methode
 		String Lecteur;
 		Fread = new FileReader(M);
 		Bread = new BufferedReader(Fread);
-		
+
 		String[][] T = new String[n][n];
 		for (int i = 0 ; i < T.length ; i++)
 		{
@@ -175,8 +178,8 @@ public class Methode
 				T[i][j] = "    *";
 			}
 		}
-		
-		while ((Lecteur = Bread.readLine()) != null) 
+
+		while ((Lecteur = Bread.readLine()) != null)
 		{
 			if (compteur==1 || compteur== 2)
 			{
@@ -237,8 +240,8 @@ public class Methode
 		}
 		Bread.close();
 	}
-	
-	
+
+	// Detection de circuits
 	public static void circuit(String M) throws IOException
 	{
 		int compteur = 1;
@@ -247,11 +250,11 @@ public class Methode
 		String Lecteur;
 		Fread = new FileReader(M);
 		Bread = new BufferedReader(Fread);
-		
+
 		ArrayList<Integer> Fin = new ArrayList<Integer>();
 		ArrayList<Integer> Debut = new ArrayList<Integer>();
-		
-		while ((Lecteur = Bread.readLine()) != null) 
+
+		while ((Lecteur = Bread.readLine()) != null)
 		{
 			if (compteur == 1 || compteur == 2)
 			{
@@ -264,23 +267,23 @@ public class Methode
 				Debut.add(Integer.parseInt(Ligne[0]));
 			}
 		}
-		
+
 		ArrayList<Integer> val = new ArrayList<Integer>();
-		
+
 		for(int w = 0 ; w < Methode.sommet(M) ; w++)
 		{
 			val.add(w);
 		}
-		
+
 		int v=0;
-		
+
 		while(Methode.entree(Debut, Fin).size() > 0)
 		{
 			ArrayList<Integer> La = new ArrayList<Integer>();
 			System.out.println("Points d'entr�e:");
 			La = Methode.entree(Debut, Fin);
 			System.out.println(Methode.entree(Debut, Fin));
-			
+
 			for(int i = 0 ; i < La.size() ; i++)
 			{
 				for(int j =0 ; j < Debut.size(); j++)
@@ -303,7 +306,7 @@ public class Methode
 			System.out.println("Sommets restant :");
 			System.out.println(val);
 		}
-		
+
 		if(val.size() != 0) {
 			System.out.println("Points d'entr�e:");
 			System.out.println("Aucun");
@@ -313,14 +316,14 @@ public class Methode
 			System.out.println("Aucun");
 			System.out.println("Le graphe NE contient PAS au moins un circuit.");
 		}
-	
+
 		Bread.close();
 
 	}
-	
-	
-	
-	
+
+
+
+	// Calcul du rang des sommets
 	public static void rang(String M) throws IOException
 	{
 		int s = Methode.sommet(M);
@@ -331,13 +334,13 @@ public class Methode
 		String Lecteur;
 		Fread = new FileReader(M);
 		Bread = new BufferedReader(Fread);
-		
+
 		ArrayList<Integer> Fin = new ArrayList<Integer>();
 		ArrayList<Integer> Debut = new ArrayList<Integer>();
 		ArrayList<Integer> NoA = new ArrayList<Integer>();
-		
+
 		Integer[][] Tab = new Integer[s][a];
-		
+
 		while ((Lecteur = Bread.readLine()) != null) {
 			if (compteur==1 || compteur== 2) {
 				compteur++;
@@ -347,12 +350,12 @@ public class Methode
 				Debut.add(Integer.parseInt(Ligne[0]));
 			}
 		}
-		
+
 		System.out.println("La00");
 		ArrayList<Integer> Idsupp = new ArrayList<Integer>();
 		Idsupp = Methode.suppId(Debut, Fin);
 		//On supprime le circuit
-		
+
 		if (Idsupp.size() != 0 ) {
 			int z = 0 ;
 			for ( int delete = 0 ; delete < Debut.size() ; delete ++) {
@@ -364,18 +367,18 @@ public class Methode
 				}
 			}
 		}
-		
+
 		System.out.println("Id" + Idsupp );
-		
+
 		int count = 0;
 		ArrayList<Integer> val = new ArrayList<Integer>();
-		
+
 		for(int w = 0 ; w < Methode.sommet(M) ; w++) {
 			val.add(w);
 		}
-		
+
 		System.out.println(" M�thode d��limination des points d�entr�e");
-		
+
 		while(Debut.size() != 0 ) {
 			ArrayList<Integer> entree = new ArrayList<Integer>();
 			entree = Methode.entree(Debut, Fin);
@@ -394,25 +397,25 @@ public class Methode
 						}
 						Debut.remove(x);
 						Fin.remove(x);
-						
+
 						if (x != 0) {
 							x = x - 1;
 						}
 					}
 				}
 			}
-			
+
 		}
-		
+
 		System.out.println("Rang courant = " + count);
 		System.out.println("Points d'entr�e :");
 		System.out.println(val);
 		System.out.println("");
-		
-		
+
+
 		Bread.close();
 	}
-	
+
 	public static ArrayList<Integer> entree(ArrayList<Integer> Debut , ArrayList<Integer> Fin)
 	{
 		ArrayList<Integer> Afficher = new ArrayList<Integer>();
@@ -450,7 +453,7 @@ public class Methode
 		}
 		return Afficher;
 	}
-	
+
 	public static ArrayList<Integer> id(ArrayList<Integer> Debut , ArrayList<Integer> Fin)
 	{
 		ArrayList<Integer> Afficher = new ArrayList<Integer>();
@@ -471,7 +474,7 @@ public class Methode
 		}
 		return Afficher;
 	}
-	
+
 	public static ArrayList<Integer> suppId(ArrayList<Integer> Debut , ArrayList<Integer> Fin) throws IOException
 	{
 		ArrayList<Integer> A = new ArrayList<Integer>();
@@ -489,7 +492,7 @@ public class Methode
 			}
 		}
 		int c = 0;
-		for(int a = 0 ; a < A.size();a++)// On supp les doublons
+		for(int a = 0 ; a < A.size();a++)//Suppression des doublons
 		{
 			if (c == 1) {
 				A.remove(a);
