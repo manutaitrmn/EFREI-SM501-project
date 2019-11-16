@@ -11,8 +11,9 @@ public class Test
 	public static void main(String[] args) throws IOException {
 		
 		try {
+			
 			// Demande a l'utilisateur de choisir le graphe
-			System.out.println("Quel graphe voulez vous etudier? ( -1 == NON )");
+			System.out.println("Quel graphe voulez vous etudier? (-1 pour quitter)");
 			
 			// Récupération de la saisie de l'utilisateur
 			Scanner action = new Scanner(System.in);
