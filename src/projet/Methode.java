@@ -8,37 +8,33 @@ import java.util.ArrayList;
 
 public class Methode 
 {
-	public static void Lire(String M) throws IOException
-	{
-		int compteur=1;
+	public static void Lire(String M) throws IOException {
+		
+		int compteur = 1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
 		String Lecteur;
 		Fread = new FileReader(M);
 		Bread = new BufferedReader(Fread);
-		while ((Lecteur = Bread.readLine()) != null) 
-		{
-			if (compteur==1)
-			{
+		while ((Lecteur = Bread.readLine()) != null) {
+			if (compteur==1) {
 				System.out.println(Lecteur + " sommets");
 				compteur++;
-			}
-			else if (compteur == 2)
-			{
+			} else if (compteur == 2) {
 				System.out.println(Lecteur + " arcs");
 				compteur++;
-			}
-			else
-			{
+			} else {
 				String[] Ligne = Lecteur.split(" ");
 				System.out.println(Ligne[0] + " -> " + Ligne[1]+ " = " + Ligne[2]);
 			}
 		}
+		
 		Bread.close();
+		
 	}
 	
-	public static int sommet(String M) throws IOException
-	{
+	public static int sommet(String M) throws IOException {
+		
 		int n = 0;
 		int compteur = 1;
 		BufferedReader Bread = null;
@@ -46,20 +42,20 @@ public class Methode
 		String Lecteur;
 		Fread = new FileReader(M);
 		Bread = new BufferedReader(Fread);
-		while ((Lecteur = Bread.readLine()) != null) 
-		{
-			if (compteur == 1)
-			{
+		while ((Lecteur = Bread.readLine()) != null) {
+			if (compteur == 1) {
 				n = Integer.parseInt(Lecteur);
 				compteur++;
 			}
 		}
+		
 		Bread.close();
 		return n;
+		
 	}
 	
-	public static int arc(String M) throws IOException
-	{
+	public static int arc(String M) throws IOException {
+		
 		int n = 0;
 		int compteur = 1;
 		BufferedReader Bread = null;
@@ -81,11 +77,12 @@ public class Methode
 		}
 		Bread.close();
 		return n;
+		
 	}
 	
 	
-	public static void adjacence(String M) throws IOException
-	{
+	public static void adjacence(String M) throws IOException {
+		
 		int n = Methode.arc(M);
 		int compteur = 1;
 		BufferedReader Bread = null;
@@ -494,13 +491,12 @@ public class Methode
 		int c = 0;
 		for(int a = 0 ; a < A.size();a++)// On supp les doublons
 		{
-			if ( c == 1)
-			{
+			if (c == 1) {
 				A.remove(a);
 				a = a -1;
 				c = 0;
 			}
-			c=1;
+			c = 1;
 		}
 		return A;
 	}
