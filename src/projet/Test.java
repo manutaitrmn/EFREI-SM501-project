@@ -9,18 +9,28 @@ public class Test
 {
 
 	public static void main(String[] args) throws IOException {
+		
 		try {
-			System.out.println("Quel graphe voulez vous etudier? ( -1 == NON )"); // Demande a l'utilisateur de choisir le graphe
-			Scanner action = new Scanner(System.in); // Permet de recuperer les informations ecrites par l'utilisateur
+			// Demande a l'utilisateur de choisir le graphe
+			System.out.println("Quel graphe voulez vous etudier? ( -1 == NON )");
+			
+			// Récupération de la saisie de l'utilisateur
+			Scanner action = new Scanner(System.in);
 			int nb = action.nextInt();
 
 			while (nb != -1) {
 				
-				String M = new File("").getAbsolutePath() + "/src/projet/Graphe" + nb + ".txt"; // Permet de recuperer le chemin du dossier dans lequel se trouve les graphes a etudier
-			
-				ArrayList<Integer[]> graphe = Methode.convert(M);
+				// Déclaration des types de variables
+				String filePath;
+				ArrayList<Integer[]> graph;
 				
-				System.out.println(graphe.get(4)[2]);
+				// Récupération du fichier txt du graphe à étudier
+				filePath = new File("").getAbsolutePath() + "/src/projet/Graphe" + nb + ".txt";
+				
+				// Conversion du graphe en tableau 2D à partir du fichier txt
+				graph = Methode.convert(filePath);
+				
+				System.out.println(graph.get(4)[2]);
 				
 				nb = -1;
 				
@@ -50,8 +60,11 @@ public class Test
 		
 			System.out.println("Fin");
 			action.close();
+			
 		} catch (Exception e) {
+			
 			System.err.println(e + "Un problème est survenu");
+			
 		}
 	}
 
