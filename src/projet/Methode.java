@@ -327,7 +327,8 @@ public class Methode
 		
 		System.out.println(" Méthode d'élimination des points d'entrée");
 		
-		while(Debut.size() != 0 ) {
+		while(Debut.size() != 0 ) 
+		{
 			ArrayList<Integer> entree = new ArrayList<Integer>();
 			entree = Methode.entree(Debut, Fin);
 			System.out.println("Rang courant = " + count);
@@ -335,36 +336,32 @@ public class Methode
 			System.out.println(entree);
 			System.out.println("");
 			count ++;
-			for (int x = 0 ; x < Debut.size(); x++)
+			int check =0;
+			for (int x = 0 ; x < entree.size(); x++)
 			{
-				for ( int y = 0 ; y < entree.size(); y++)
+				for ( int y = 0 ; y < Debut.size(); y++)
 				{
-					if ( Debut.get(x) == entree.get(y))
+					if ( Debut.get(y) == entree.get(x))
 					{
 						for(int p = 0 ; p < val.size( ); p++)
 						{
-							if(Debut.get(x) == val.get(p))
+							if(Debut.get(y) == val.get(p))
 							{
 								val.remove(p);
 							}
 						}
-						Debut.remove(x);
-						Fin.remove(x);
-						
-						if (x != 0)
-						{
-							x = x - 1;
-						}
+						Debut.remove(y);
+						Fin.remove(y);
+						y--;
 					}
 				}
-			}
+		}
 		}
 		
 		System.out.println("Rang courant = " + count);
 		System.out.println("Points d'entree :");
 		System.out.println(val);
 		System.out.println("");
-		
 		Bread.close();
 	}
 	
@@ -381,6 +378,36 @@ public class Methode
 			
 			if (v == 0) {
 				Afficher.add(Debut.get(i));
+			} else {
+				v = 0;
+			}
+		}
+		
+		for ( int r = 0 ; r < Afficher.size(); r++) {
+			for ( int s = 0 ; s < Afficher.size() ; s++) {
+				if( r != s) {
+					if ( Afficher.get(r) == Afficher.get(s)) {
+						Afficher.remove(s);
+					}
+				}
+			}
+		}
+		
+		return Afficher;
+	}
+	
+	public static ArrayList<Integer> sortie(ArrayList<Integer> Debut , ArrayList<Integer> Fin) {
+		ArrayList<Integer> Afficher = new ArrayList<Integer>();
+		int v = 0;
+		for(int i = 0 ; i < Fin.size() ; i++) {
+			for(int j = 0 ; j < Debut.size(); j++) {
+				if (Debut.get(i) == Fin.get(j)) {
+					v = 1;
+				}
+			}
+			
+			if (v == 0) {
+				Afficher.add(Fin.get(i));
 			} else {
 				v = 0;
 			}
