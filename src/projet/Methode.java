@@ -396,6 +396,36 @@ public class Methode
 		return Afficher;
 	}
 	
+	public static ArrayList<Integer> sortie(ArrayList<Integer> Debut , ArrayList<Integer> Fin) {
+		ArrayList<Integer> Afficher = new ArrayList<Integer>();
+		int v = 0;
+		for(int i = 0 ; i < Fin.size() ; i++) {
+			for(int j = 0 ; j < Debut.size(); j++) {
+				if (Debut.get(i) == Fin.get(j)) {
+					v = 1;
+				}
+			}
+			
+			if (v == 0) {
+				Afficher.add(Fin.get(i));
+			} else {
+				v = 0;
+			}
+		}
+		
+		for ( int r = 0 ; r < Afficher.size(); r++) {
+			for ( int s = 0 ; s < Afficher.size() ; s++) {
+				if( r != s) {
+					if ( Afficher.get(r) == Afficher.get(s)) {
+						Afficher.remove(s);
+					}
+				}
+			}
+		}
+		
+		return Afficher;
+	}
+	
 	
 	public static ArrayList<Integer> id(ArrayList<Integer> Debut , ArrayList<Integer> Fin) {
 		ArrayList<Integer> Afficher = new ArrayList<Integer>();
