@@ -327,7 +327,8 @@ public class Methode
 		
 		System.out.println(" Méthode d'élimination des points d'entrée");
 		
-		while(Debut.size() != 0 ) {
+		while(Debut.size() != 0 ) 
+		{
 			ArrayList<Integer> entree = new ArrayList<Integer>();
 			entree = Methode.entree(Debut, Fin);
 			System.out.println("Rang courant = " + count);
@@ -335,36 +336,32 @@ public class Methode
 			System.out.println(entree);
 			System.out.println("");
 			count ++;
-			for (int x = 0 ; x < Debut.size(); x++)
+			int check =0;
+			for (int x = 0 ; x < entree.size(); x++)
 			{
-				for ( int y = 0 ; y < entree.size(); y++)
+				for ( int y = 0 ; y < Debut.size(); y++)
 				{
-					if ( Debut.get(x) == entree.get(y))
+					if ( Debut.get(y) == entree.get(x))
 					{
 						for(int p = 0 ; p < val.size( ); p++)
 						{
-							if(Debut.get(x) == val.get(p))
+							if(Debut.get(y) == val.get(p))
 							{
 								val.remove(p);
 							}
 						}
-						Debut.remove(x);
-						Fin.remove(x);
-						
-						if (x != 0)
-						{
-							x = x - 1;
-						}
+						Debut.remove(y);
+						Fin.remove(y);
+						y--;
 					}
 				}
-			}
+		}
 		}
 		
 		System.out.println("Rang courant = " + count);
 		System.out.println("Points d'entrée :");
 		System.out.println(val);
 		System.out.println("");
-		
 		Bread.close();
 	}
 	
