@@ -1,16 +1,14 @@
 package projet;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Methode 
 {
 	// Methode permettant de lire le graphe
-	public static void Lire(String M) throws IOException {
+	public static void read(String M) throws IOException {
 		int compteur=1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
@@ -260,7 +258,7 @@ public class Methode
 			val.add(w);
 		}
 		
-		int v=0;
+		// int v=0;
 		
 		while(Methode.entree(Debut, Fin).size() > 0) {
 			ArrayList<Integer> La = new ArrayList<Integer>();
@@ -303,8 +301,8 @@ public class Methode
 		
 	// Calcul du rang des sommets
 	public static void rang(String M) throws IOException {
-		int s = Methode.sommet(M);
-		int a = Methode.arc(M);
+		//int s = Methode.sommet(M);
+		//int a = Methode.arc(M);
 		int compteur=1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
@@ -314,9 +312,9 @@ public class Methode
 		
 		ArrayList<Integer> Fin = new ArrayList<Integer>();
 		ArrayList<Integer> Debut = new ArrayList<Integer>();
-		ArrayList<Integer> NoA = new ArrayList<Integer>();
+		// ArrayList<Integer> NoA = new ArrayList<Integer>();
 		
-		Integer[][] Tab = new Integer[s][a];
+		// Integer[][] Tab = new Integer[s][a];
 		
 		while ((Lecteur = Bread.readLine()) != null) {
 			if (compteur==1 || compteur== 2) {
@@ -366,7 +364,8 @@ public class Methode
 			System.out.println(entree);
 			System.out.println("");
 			count ++;
-			int check =0;
+			
+			// int check =0;
 			for (int x = 0 ; x < entree.size(); x++)
 			{
 				for ( int y = 0 ; y < Debut.size(); y++)
