@@ -15,6 +15,7 @@ public class Test
 			int nb = action.nextInt();
 
 			while (nb != -1) {
+				
 				String M = new File("").getAbsolutePath()+"/src/projet/Graphe"+nb+ ".txt"; // On cherche un graphe.txt
 
 				System.out.println("Lecture du graphe sur fichier");
@@ -38,7 +39,7 @@ public class Test
 
 				System.out.println("Quel graphe voulez vous afficher?");
 				Scanner number = new Scanner(System.in);
-				nb = number.nextInt(); // Si nb == -1 On arr�te la boucle
+				nb = number.nextInt(); // Si nb == -1 : Arrêt de la boucle
 
 			}
 
@@ -46,7 +47,9 @@ public class Test
 			action.close();
 
 		} catch (Exception e) {
+			
 			System.err.println(e + "Un probl�me est survenu");
+			
 		}
 	}
 
