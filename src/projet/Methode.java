@@ -21,6 +21,14 @@ public class Methode
 		}
 	}
 	
+	public static int getVertices(ArrayList<Integer[]> graph) throws IOException {
+		return graph.get(0)[0];
+	}
+	
+	public static int getArcs(ArrayList<Integer[]> graph) throws IOException {
+		return graph.get(1)[0];
+	}
+	
 	
 	// Calcul des sommets du graphe
 	public static int sommet(String M) throws IOException {
