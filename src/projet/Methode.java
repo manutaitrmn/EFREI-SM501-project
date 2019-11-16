@@ -35,8 +35,7 @@ public class Methode
 	}
 
 	// Calcul des sommets du graphe
-	public static int sommet(String M) throws IOException
-	{
+	public static int sommet(String M) throws IOException {
 		int n = 0;
 		int compteur = 1;
 		BufferedReader Bread = null;
@@ -53,12 +52,10 @@ public class Methode
 
 		Bread.close();
 		return n;
-
 	}
 
 	// Calcul des arcs du graphe
-	public static int arc(String M) throws IOException
-	{
+	public static int arc(String M) throws IOException {
 		int n = 0;
 		int compteur = 1;
 		BufferedReader Bread = null;
@@ -66,26 +63,23 @@ public class Methode
 		String Lecteur;
 		Fread = new FileReader(M);
 		Bread = new BufferedReader(Fread);
-		while ((Lecteur = Bread.readLine()) != null)
-		{
-			if (compteur == 1)
-			{
+		while ((Lecteur = Bread.readLine()) != null) {
+			if (compteur == 1) {
 				compteur++;
-			}
-			else if (compteur == 2)
-			{
+			} else if (compteur == 2) {
 				n = Integer.parseInt(Lecteur);
 				compteur++;
 			}
 		}
+		
 		Bread.close();
 		return n;
 
 	}
 
 	// Creation de la matrice d'adjacence du graphe
-	public static void adjacence(String M) throws IOException
-	{
+	public static void adjacence(String M) throws IOException {
+		
 		int n = Methode.arc(M);
 		int compteur = 1;
 		BufferedReader Bread = null;
@@ -95,73 +89,60 @@ public class Methode
 		Bread = new BufferedReader(Fread);
 
 		String[][] T = new String[n][n];
-		for (int i = 0 ; i < T.length ; i++)
-		{
-			for (int j=0 ; j < T[i].length ; j++)
-			{
+		for (int i = 0 ; i < T.length ; i++) {
+			for (int j=0 ; j < T[i].length ; j++) {
 				T[i][j] = "    F";
 			}
 		}
 
-		while ((Lecteur = Bread.readLine()) != null)
-		{
-			if (compteur == 1 || compteur == 2)
-			{
+		while ((Lecteur = Bread.readLine()) != null) {
+			if (compteur == 1 || compteur == 2) {
 				compteur++;
-			}
-			else
-			{
+			} else {
 				String[] Ligne = Lecteur.split(" ");
 				T[Integer.parseInt(Ligne[0])][Integer.parseInt(Ligne[1])]= "    V";
 			}
 
 		}
+		
 		int k = n;
 		System.out.println("  Matrice d'adjacence");
 		System.out.print(" ");
-		while (k > 1 )
-		{
-			for( int z = 0 ; z < n ; z++)
-			{
-				if( z != n-1)
-				{
+		while (k > 1 ) {
+			for( int z = 0 ; z < n ; z++) {
+				if( z != n-1) {
 					int a = n-k;
 					System.out.print("    "+ a);
 					k=k-1;
-				}
-				else
-				{
+				} else {
 					int a = n-k;
 					System.out.println("    "+ a);
 					k=k-1;
 				}
 			}
 		}
+		
 		int u = n;
-		while (u > 0)
-		{
+		while (u > 0) {
 			int r = n-u;
 			System.out.print(r);
 			u=u-1;
-			for (int x = 0 ; x < n ; x++)
-			{
-				if (x != n-1)
-				{
+			for (int x = 0 ; x < n ; x++) {
+				if (x != n-1) {
 				System.out.print(T[r][x]);
-				}
-				else
-				{
+				} else {
 					System.out.println(T[r][r]);
 				}
 			}
 		}
+		
 		Bread.close();
 	}
 
 
 	// Creation de la matrice des valeurs du graphe
-	public static void valeurs(String M) throws IOException
-	{
+	public static void valeurs(String M) throws IOException {
+		
 		int n = Methode.arc(M);
 		int compteur = 1;
 		BufferedReader Bread = null;
@@ -171,79 +152,64 @@ public class Methode
 		Bread = new BufferedReader(Fread);
 
 		String[][] T = new String[n][n];
-		for (int i = 0 ; i < T.length ; i++)
-		{
-			for (int j=0 ; j < T[i].length ; j++)
-			{
+		for (int i = 0 ; i < T.length ; i++) {
+			for (int j=0 ; j < T[i].length ; j++) {
 				T[i][j] = "    *";
 			}
 		}
 
-		while ((Lecteur = Bread.readLine()) != null)
-		{
-			if (compteur==1 || compteur== 2)
-			{
+		while ((Lecteur = Bread.readLine()) != null) {
+			if (compteur==1 || compteur== 2) {
 				compteur++;
-			}
-			else
-			{
+			} else {
 				String[] Ligne = Lecteur.split(" ");
-				if (Ligne[2].length() == 1)
-				{
+				if (Ligne[2].length() == 1) {
 					T[Integer.parseInt(Ligne[0])][Integer.parseInt(Ligne[1])]= "    "+ Ligne[2];
-				}
-				else
-				{
+				} else {
 					T[Integer.parseInt(Ligne[0])][Integer.parseInt(Ligne[1])]= "   "+ Ligne[2];
 				}
 			}
 		}
+		
 		int k=n;
 		System.out.println("");
 		System.out.println("  Matrice des valeurs");
 		System.out.print(" ");
-		while (k > 1 )
-		{
-			for( int z = 0 ; z < n ; z++)
-			{
-				if( z != n-1)
-				{
+		
+		while (k > 1 ) {
+			for( int z = 0 ; z < n ; z++) {
+				if( z != n-1) {
 					int a= n-k;
 					System.out.print("    "+ a);
 					k=k-1;
-				}
-				else
-				{
+				} else {
 					int a= n-k;
 					System.out.println("    "+ a);
 					k=k-1;
 				}
 			}
 		}
+		
 		int u = n;
-		while (u > 0)
-		{
+		while (u > 0) {
 			int r = n - u;
 			System.out.print(r);
 			u=u-1;
-			for (int x = 0 ; x < n ; x++)
-			{
-				if (x != n-1)
-				{
+			for (int x = 0 ; x < n ; x++) {
+				if (x != n-1) {
 				System.out.print(T[r][x]);
-				}
-				else
-				{
+				} else {
 					System.out.println(T[r][r]);
 				}
 			}
 		}
+		
 		Bread.close();
 	}
 
 	// Detection de circuits
-	public static void circuit(String M) throws IOException
-	{
+	public static void circuit(String M) throws IOException {
+		
 		int compteur = 1;
 		BufferedReader Bread = null;
 		FileReader Fread = null;
@@ -254,14 +220,10 @@ public class Methode
 		ArrayList<Integer> Fin = new ArrayList<Integer>();
 		ArrayList<Integer> Debut = new ArrayList<Integer>();
 
-		while ((Lecteur = Bread.readLine()) != null)
-		{
-			if (compteur == 1 || compteur == 2)
-			{
+		while ((Lecteur = Bread.readLine()) != null) {
+			if (compteur == 1 || compteur == 2) {
 				compteur++;
-			}
-			else
-			{
+			} else {
 				String[] Ligne = Lecteur.split(" ");
 				Fin.add(Integer.parseInt(Ligne[1]));
 				Debut.add(Integer.parseInt(Ligne[0]));
@@ -270,49 +232,45 @@ public class Methode
 
 		ArrayList<Integer> val = new ArrayList<Integer>();
 
-		for(int w = 0 ; w < Methode.sommet(M) ; w++)
-		{
+		for(int w = 0 ; w < Methode.sommet(M) ; w++) {
 			val.add(w);
 		}
 
 		int v=0;
 
-		while(Methode.entree(Debut, Fin).size() > 0)
-		{
+		while(Methode.entree(Debut, Fin).size() > 0) {
+			
 			ArrayList<Integer> La = new ArrayList<Integer>();
 			System.out.println("Points d'entr�e:");
 			La = Methode.entree(Debut, Fin);
 			System.out.println(Methode.entree(Debut, Fin));
 
-			for(int i = 0 ; i < La.size() ; i++)
-			{
-				for(int j =0 ; j < Debut.size(); j++)
-				{
-					for(int x=0 ; x< val.size(); x++)
-					{
-						if(val.get(x) == La.get(i))
-						{
+			for(int i = 0 ; i < La.size() ; i++) {
+				for(int j =0 ; j < Debut.size(); j++) {
+					for(int x=0 ; x< val.size(); x++) {
+						if(val.get(x) == La.get(i)) {
 							val.remove(x);
 						}
 					}
-					if(La.get(i) == Debut.get(j))
-					{
+					
+					if(La.get(i) == Debut.get(j)) {
 						Debut.remove(j);
 						Fin.remove(j);
 					}
 				}
 			}
-			System.out.println("Suppression des points d�entr�e");
+			
+			System.out.println("Suppression des points d'entrée");
 			System.out.println("Sommets restant :");
 			System.out.println(val);
 		}
 
 		if(val.size() != 0) {
-			System.out.println("Points d'entr�e:");
+			System.out.println("Points d'entrée:");
 			System.out.println("Aucun");
 			System.out.println("Le graphe contient au moins un circuit.");
 		} else {
-			System.out.println("Points d'entr�e:");
+			System.out.println("Points d'entrée:");
 			System.out.println("Aucun");
 			System.out.println("Le graphe NE contient PAS au moins un circuit.");
 		}
@@ -324,8 +282,8 @@ public class Methode
 
 
 	// Calcul du rang des sommets
-	public static void rang(String M) throws IOException
-	{
+	public static void rang(String M) throws IOException {
+		
 		int s = Methode.sommet(M);
 		int a = Methode.arc(M);
 		int compteur=1;
@@ -377,7 +335,7 @@ public class Methode
 			val.add(w);
 		}
 
-		System.out.println(" M�thode d��limination des points d�entr�e");
+		System.out.println(" Méthode d'élimination des points d'entrée");
 
 		while(Debut.size() != 0 ) {
 			ArrayList<Integer> entree = new ArrayList<Integer>();
@@ -395,6 +353,7 @@ public class Methode
 								val.remove(p);
 							}
 						}
+						
 						Debut.remove(x);
 						Fin.remove(x);
 
