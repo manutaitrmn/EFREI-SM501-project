@@ -234,7 +234,7 @@ public class Methode
 		
 		while(Methode.entree(Debut, Fin).size() > 0) {
 			ArrayList<Integer> La = new ArrayList<Integer>();
-			System.out.println("Points d'entr�e:");
+			System.out.println("Points d'entree:");
 			La = Methode.entree(Debut, Fin);
 			System.out.println(Methode.entree(Debut, Fin));
 			
@@ -253,17 +253,17 @@ public class Methode
 				}
 			}
 			
-			System.out.println("Suppression des points d'entrée");
+			System.out.println("Suppression des points d'entree");
 			System.out.println("Sommets restant :");
 			System.out.println(val);
 		}
 		
 		if(val.size() != 0) {
-			System.out.println("Points d'entrée:");
+			System.out.println("Points d'entree:");
 			System.out.println("Aucun");
 			System.out.println("Le graphe contient au moins un circuit.");
 		} else {
-			System.out.println("Points d'entrée:");
+			System.out.println("Points d'entree:");
 			System.out.println("Aucun");
 			System.out.println("Le graphe NE contient PAS au moins un circuit.");
 		}
