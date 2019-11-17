@@ -4,20 +4,23 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Graph {
 	
-	ArrayList<Integer[]> graph;
+	private ArrayList<String[]> graph;
 	
+	
+	// Le constructeur
 	public Graph(String file) {
-		ArrayList<Integer[]> converted = new ArrayList<Integer[]>();
+		ArrayList<String[]> converted = new ArrayList<String[]>();
 		try (FileReader fr = new FileReader(file); BufferedReader br = new BufferedReader(fr)) {
 			String line;
 			while ((line = br.readLine()) != null) {
 				String[] l = line.split(" ");
-				Integer[] ints = new Integer[l.length];
+				String[] ints = new String[l.length];
 				for (int i = 0 ; i < l.length ; i++) {
-					ints[i] = Integer.parseInt(l[i]);
+					ints[i] = l[i];
 				}
 				converted.add(ints);
 			}
@@ -25,30 +28,32 @@ public class Graph {
 		} catch (IOException e) {
 			System.err.format("IOException: %s%n", e);
 		}
-		
 		graph = converted;
 	}
 	
 	
+	
+	
+	// Lecture du graphe
 	public void read() {
 		System.out.println("* Lecture du graphe");
+		System.out.println(getNumberVertices() + " sommets");
+		System.out.println(getNumberArcs() + " arcs");
 		for (int i = 0; i < graph.size(); i++) {
-			if (i == 0) {
-				System.out.println(graph.get(i)[0] + " sommets");
-			} else if (i == 1) {
-				System.out.println(graph.get(i)[0] + " arcs");
-			} else {
-				System.out.println(graph.get(i)[0] + " -> " + graph.get(i)[1] + " = " + graph.get(i)[2]);
-			}
+			System.out.println(graph.get(i)[0] + " -> " + graph.get(i)[1] + " = " + graph.get(i)[2]);
 		}
 	}
 	
 	
 	
+	
+	
+	
 	// METHODES POUR LA MATRICE D'ADJACENCE
+	// Lecture de la matrice d'adjacence
 	public void readAdjacencyMatrix() {
 		System.out.println("Lecture de la matrice d'adjacence");
-		Integer[][] m = getAdjacencyMatrix();
+		String[][] m = getAdjacencyMatrix();
 		for (int row = 0; row < m.length; row++) {
             for (int col = 0; col < m[row].length; col++) {
                 System.out.printf("%6s", m[row][col]);
@@ -56,27 +61,32 @@ public class Graph {
             System.out.println();
         }
 	}
-	
-	public Integer[][] getAdjacencyMatrix() {
+	// Recupere la matrice d'adjacence sous forme de tableau d'entiers a 2 dimensions
+	public String[][] getAdjacencyMatrix() {
 		int nbv = getNumberVertices();
-		Integer[][] m = new Integer[nbv][nbv];
+		String[][] m = new String[nbv][nbv];
 		for (int row = 0; row < nbv; row++) {
             for (int col = 0; col < nbv; col++) {
-                m[row][col] = 0;
+                m[row][col] = "0";
             }
         }
-		for (int i = 2; i < graph.size(); i++) {
-			m[graph.get(i)[0]][graph.get(i)[1]] = 1;
+		for (int i = 0; i < graph.size(); i++) {
+			m[Integer.parseInt(graph.get(i)[0])][Integer.parseInt(graph.get(i)[1])] = "1";
 		}
 		return m;
 	}
 	// FIN MATRICE D'ADJACENCE
 	
 	
+	
+	
+	
+	
 	// METHODE POUR LA MATRICE DE VALEURS
+	// Lecture de la matrice de valeurs
 	public void readValuesMatrix() {
 		System.out.println("Lecture de la matrice de valeurs");
-		Integer[][] m = getValuesMatrix();
+		String[][] m = getValuesMatrix();
 		for (int row = 0; row < m.length; row++) {
             for (int col = 0; col < m[row].length; col++) {
             	if (m[row][col] == null) {
@@ -89,35 +99,113 @@ public class Graph {
             System.out.println();
         }
 	}
-	
-	public Integer[][] getValuesMatrix() {
+	// Recupere la matrice de valeurs sous formes de tableau d'entiers a 2 dimensions
+	public String[][] getValuesMatrix() {
 		int nbv = getNumberVertices();
-		Integer[][] m = new Integer[nbv][nbv];
+		String[][] m = new String[nbv][nbv];
 		for (int row = 0; row < nbv; row++) {
             for (int col = 0; col < nbv; col++) {
                 m[row][col] = null;
             }
         }
-		for (int i = 2; i < graph.size(); i++) {
-			m[graph.get(i)[0]][graph.get(i)[1]] = graph.get(i)[2];
+		for (int i = 0; i < graph.size(); i++) {
+			m[Integer.parseInt(graph.get(i)[0])][Integer.parseInt(graph.get(i)[1])] = graph.get(i)[2];
 		}
 		return m;
 	}
 	// FIN MATRICE DE VALEURS
 	
+
 	
+	
+	// Recupere les points d'entrée sous forme de liste d'entiers
+	public String[] getSourceVertices() {
+		String[] lv = removeDuplicates(getLeftVertices());
+		String[] lr = removeDuplicates(getRightVertices());
+		ArrayList<String> sv = new ArrayList<String>();
+		for (int i = 0; i < lv.length; i++) {
+			if (!Arrays.asList(lr).contains(lv[i])) {
+				sv.add(lv[i]);
+			}
+		}
+		String[] result = new String[sv.size()];
+		for (int i = 0; i < sv.size(); i++) {
+			result[i] = sv.get(i);
+		}
+		return result;
+		
+	}
+	
+	
+	
+	
+	//METHODES POUR LES SOMMETS
+	// Recupere tous les sommets possedant des fleches sortantes dans une liste d'entiers (les sommets de gauche dans le txt)
+	public String[] getLeftVertices() {
+		String[] lv = new String[getNumberArcs()];
+		for (int i = 0; i < getNumberArcs(); i++) {
+			lv[i] = graph.get(i)[0];
+		}
+		return lv;
+	}
+	// Recupere tous les sommets possedant des fleches entrantes dans une liste d'entiers (les sommets de droite dans le txt)
+	public String[] getRightVertices() {
+		String[] lr = new String[getNumberArcs()];
+		for (int i = 0; i < getNumberArcs(); i++) {
+			lr[i] = graph.get(i)[1];
+		}
+		return lr;
+	}
+	// Recupere tous les sommets du graphe dans une liste d'entiers
+	public String[] getAllVertices() {
+        String[] array1 = getLeftVertices();
+        String[] array2 = getRightVertices();
+        int aLen = array1.length;
+        int bLen = array2.length;
+        String[] result = new String[aLen + bLen];
+        System.arraycopy(array1, 0, result, 0, aLen);
+        System.arraycopy(array2, 0, result, aLen, bLen);
+        return removeDuplicates(result);
+    }
+	// Recupere le nombre de sommets total du graphe
 	public int getNumberVertices() {
-		return graph.get(0)[0];
+		return getAllVertices().length;
 	}
+	// Supprime un sommet
+	public void removeVertex(String v) {
+		ArrayList<String[]> toBeRemoved = new ArrayList<String[]>();
+		String[] lv = getLeftVertices();
+		String[] lr = getRightVertices();
+		for (int i = 0; i < graph.size(); i++) {
+			if (lv[i].equals(v) || lr[i].equals(v)) {
+				toBeRemoved.add(graph.get(i));
+			}
+		}
+		graph.removeAll(toBeRemoved);
+	}
+	// FIN METHODES POUR LES SOMMETS
+
 	
 	
+	
+	// RECUPERER LE NOMBRE D'ARCS
 	public int getNumberArcs() {
-		return graph.get(1)[0];
+		return graph.size();
+	}
+	
+	// RECUPERER LE GRAPHE SOUS FORME DE TABLEAU A 2D
+	public ArrayList<String[]> getValues() {
+		return graph;
 	}
 	
 	
-	public ArrayList<Integer[]> getValues() {
-		return graph;
+	
+	
+	
+	//AUTRES METHODES UTILES
+	// Supprime tous les doublons dans une liste de type Integer
+	public static String[] removeDuplicates(String[] list) {
+		return Arrays.stream(list).distinct().toArray(String[]::new);
 	}
 	
 	

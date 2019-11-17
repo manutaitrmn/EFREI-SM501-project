@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
 
@@ -45,32 +46,17 @@ public class Main {
 				System.out.println();
 				graph.readValuesMatrix();
 				
-				nb = -1;
+				// Detection de circuit
+				System.out.println();
+				detectCycle(graph);
 				
-				// System.out.println("Lecture du graphe sur fichier");
-				// Methode.Lire(M);
-			
-				// System.out.println("");
-				// System.out.println("Représentation du graphe sous forme matricielle");
-				// Methode.adjacence(M);
-				// Methode.valeurs(M);
-			
-				// System.out.println("");
-				// System.out.println("Détection de circuit");
-				// Methode.circuit(M);
-			
-				// System.out.println("");
-				// System.out.println("Calcul des rangs");
-				// Methode.rang(M);
-			
-				// System.out.println("Quel graphe voulez vous afficher?");
-				// Scanner number = new Scanner(System.in);
-				// nb = number.nextInt(); // Si nb == -1: Arret de la boucle
-			
 				
+				
+				nb = -1;				
 				
 			}
-		
+			
+			System.out.println();
 			System.out.println("Fin");
 			action.close();
 			
@@ -81,24 +67,38 @@ public class Main {
 		}
 	}
 	
-	// Conversion du graphe.txt en un tableau à 2D
-	public static ArrayList<Integer[]> convert(String M) throws IOException {
-		ArrayList<Integer[]> converted = new ArrayList<Integer[]>();
-		try (FileReader fr = new FileReader(M); BufferedReader br = new BufferedReader(fr)) {
-			String line;
-			while ((line = br.readLine()) != null) {
-				String[] l = line.split(" ");
-				Integer[] ints = new Integer[l.length];
-				for (int i = 0 ; i < l.length ; i++) {
-					ints[i] = Integer.parseInt(l[i]);
-				}
-				converted.add(ints);
+	public static void detectCycle(Graph graph) {
+		System.out.println("* Detection de circuit");
+		Graph tempGraph = graph;
+		// On recupere tous les sommets
+		String[] pr = tempGraph.getAllVertices();
+		//Tant qu'il y a toujours des points d'entre
+		while (tempGraph.getSourceVertices().length != 0) {
+			// On recupere les points d'entree
+			String[] sv = tempGraph.getSourceVertices();
+			System.out.println("Points d'entrée");
+			System.out.println(Arrays.deepToString(sv));
+			// On supprime les points d'entree
+			System.out.println("Suppression des points d'entrée");
+			for (int i = 0; i < sv.length; i++) {
+				tempGraph.removeVertex(sv[i]);
 			}
-			br.close();
-		} catch (IOException e) {
-			System.err.format("IOException: %s%n", e);
+			// On recupere les points restants
+			System.out.println("Points restants");
+			pr = tempGraph.getAllVertices();
+			if (pr.length != 0) {
+				System.out.println(Arrays.deepToString(pr));
+			} else {
+				System.out.println("Aucun");
+			}	
 		}
-		return converted;
+		System.out.println("Points d'entrée \nAucun");
+		// Si il existe toujours des sommets, alors le graphe contient au moins un circuit sinon etc...
+		if (pr.length == 0) {
+			System.out.println("Le graphe contient aucun circuit.");
+		} else {
+			System.out.println("Le graphe contient au moins un circuit.");
+		}
+		
 	}
-
 }
