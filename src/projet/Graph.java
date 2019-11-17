@@ -13,7 +13,6 @@ public class Graph {
 		ArrayList<Integer[]> converted = new ArrayList<Integer[]>();
 		try (FileReader fr = new FileReader(file); BufferedReader br = new BufferedReader(fr)) {
 			String line;
-			int count = 0;
 			while ((line = br.readLine()) != null) {
 				String[] l = line.split(" ");
 				Integer[] ints = new Integer[l.length];
