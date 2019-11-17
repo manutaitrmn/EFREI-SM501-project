@@ -23,17 +23,27 @@ public class Main {
 			while (nb != -1) {
 				
 				// Déclaration des types de variables
-				String filePath;
-				ArrayList<Integer[]> graph;
+				String file;
+				Graph graph;
 				
 				// Récupération du fichier txt du graphe à étudier
-				filePath = new File("").getAbsolutePath() + "/src/projet/Graphe" + nb + ".txt";
+				file = new File("").getAbsolutePath() + "/src/projet/Graphe" + nb + ".txt";
 				
 				// Conversion du graphe en tableau 2D à partir du fichier txt
-				graph = convert(filePath);
+				// graph = convert(file);
+				graph = new Graph(file);
 				
 				// Lecture du graphe
-				Methode.read(graph);
+				System.out.println();
+				graph.read();
+				
+				// Lecture de la matrice d'adjacence
+				System.out.println();
+				graph.readAdjacencyMatrix();
+				
+				// Lecture de la matrice de valeurs
+				System.out.println();
+				graph.readValuesMatrix();
 				
 				nb = -1;
 				
