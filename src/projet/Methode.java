@@ -381,13 +381,13 @@ public class Methode
 			}
 		}
 		
-		for ( int r = 0 ; r < Afficher.size(); r++) {
-			for ( int s = 0 ; s < Afficher.size() ; s++) {
-				if( r != s) {
+		for ( int r = 0 ; r < Afficher.size()-1; r++) {
+			for ( int s = r + 1; s < Afficher.size() ; s++) {//&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+				
 					if ( Afficher.get(r) == Afficher.get(s)) {
 						Afficher.remove(s);
 					}
-				}
+				
 			}
 		}
 		
@@ -411,13 +411,13 @@ public class Methode
 			}
 		}
 		
-		for ( int r = 0 ; r < Afficher.size(); r++) {
-			for ( int s = 0 ; s < Afficher.size() ; s++) {
-				if( r != s) {
+		for ( int r = 0 ; r < Afficher.size()-1; r++) {
+			for ( int s = r+1 ; s < Afficher.size() ; s++) {
+				
 					if ( Afficher.get(r) == Afficher.get(s)) {
 						Afficher.remove(s);
 					}
-				}
+	
 			}
 		}
 		
@@ -468,6 +468,14 @@ public class Methode
 		return A;
 	}
 	
+	public boolean ordonnance(ArrayList<Integer> a)
+	{
+		if(a.size()==1)
+			return true;
+		return false;
+	}
+	
+
 
 	
 }
