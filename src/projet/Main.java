@@ -50,8 +50,6 @@ public class Main {
 				System.out.println();
 				detectCycle(graph);
 				
-				
-				
 				nb = -1;				
 				
 			}
