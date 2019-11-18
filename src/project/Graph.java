@@ -83,6 +83,22 @@ public class Graph implements Cloneable, Serializable {
 	
 	
 	//METHODES POUR LES SOMMETS
+	// Recupere le nombre de sommets total du graphe
+	public int getNumberVertices() {
+		return getAllVertices().length;
+	}
+	// Recupere tous les sommets du graphe dans une liste de string
+	public String[] getAllVertices() {
+        String[] array1 = getLeftVertices();
+        String[] array2 = getRightVertices();
+        int aLen = array1.length;
+        int bLen = array2.length;
+        String[] result = new String[aLen + bLen];
+        System.arraycopy(array1, 0, result, 0, aLen);
+        System.arraycopy(array2, 0, result, aLen, bLen);
+        result = removeDuplicates(result);
+        return removeStars(result);
+    }
 	// Recupere tous les sommets possedant des fleches sortantes dans une liste de string (les sommets de gauche dans le txt)
 	public String[] getLeftVertices() {
 		ArrayList<String> lv = new ArrayList<String>();
@@ -109,24 +125,42 @@ public class Graph implements Cloneable, Serializable {
 		}
 		return frv;
 	}
-	// Recupere tous les sommets du graphe dans une liste de string
-	public String[] getAllVertices() {
-        String[] array1 = getLeftVertices();
-        String[] array2 = getRightVertices();
-        int aLen = array1.length;
-        int bLen = array2.length;
-        String[] result = new String[aLen + bLen];
-        System.arraycopy(array1, 0, result, 0, aLen);
-        System.arraycopy(array2, 0, result, aLen, bLen);
-        result = removeDuplicates(result);
-        return removeStars(result);
-    }
-	// Recupere le nombre de sommets total du graphe
-	public int getNumberVertices() {
-		return getAllVertices().length;
+	// Recupere les points d'entrée sous forme de liste de string
+	public String[] getSourceVertices() {
+		String[] lv = getLeftVertices();
+		String[] rv = getRightVertices();
+		ArrayList<String> sv = new ArrayList<String>();
+		for (int i = 0; i < lv.length; i++) {
+			if (!Arrays.asList(rv).contains(lv[i]) && !lv[i].contains("*")) {
+				sv.add(lv[i]);
+			} else if (lv[i].contains("*")) {
+				sv.add(rv[i]);
+			}
+		}
+		String[] result = new String[sv.size()];
+		for (int i = 0; i < sv.size(); i++) {
+			result[i] = sv.get(i);
+		}
+		return removeDuplicates(result);	
+	}
+	// Recupere les points de sortie sous forme de liste de string
+	public String[] getSinkVertices() {
+		String[] lv = getLeftVertices();
+		String[] rv = getRightVertices();
+		ArrayList<String> sv = new ArrayList<String>();
+		for (int i = 0; i < rv.length; i++) {
+			if (!Arrays.asList(lv).contains(rv[i])) {
+				sv.add(rv[i]);
+			}
+		}
+		String[] result = new String[sv.size()];
+		for (int i = 0; i < sv.size(); i++) {
+			result[i] = sv.get(i);
+		}
+		return removeDuplicates(result);	
 	}
 	// Supprime un sommet
-	public void removeVertex(String v) {
+	public void removeVertexByName(String v) {
 		ArrayList<String[]> toBeRemoved = new ArrayList<String[]>();
 		String[] lv = getLeftVertices();
 		String[] rv = getRightVertices();
@@ -152,24 +186,6 @@ public class Graph implements Cloneable, Serializable {
 		}
 		data.removeAll(toBeRemoved);
 	}
-	// Recupere les points d'entrée sous forme de liste de string
-	public String[] getSourceVertices() {
-		String[] lv = getLeftVertices();
-		String[] rv = getRightVertices();
-		ArrayList<String> sv = new ArrayList<String>();
-		for (int i = 0; i < lv.length; i++) {
-			if (!Arrays.asList(rv).contains(lv[i]) && !lv[i].contains("*")) {
-				sv.add(lv[i]);
-			} else if (lv[i].contains("*")) {
-				sv.add(rv[i]);
-			}
-		}
-		String[] result = new String[sv.size()];
-		for (int i = 0; i < sv.size(); i++) {
-			result[i] = sv.get(i);
-		}
-		return removeDuplicates(result);	
-	}
 	// Recupere les sommets classés par rangs dans un tableau 2d
 	public ArrayList<String[]> getAllVerticesRanks() {
 		// On recupere tous les sommets
@@ -181,7 +197,7 @@ public class Graph implements Cloneable, Serializable {
 			ranks.add(sv);
 			// On supprime les points d'entree
 			for (int i = 0; i < sv.length; i++) {
-				removeVertex(sv[i]);
+				removeVertexByName(sv[i]);
 			}
 		}
 		return ranks;
@@ -217,6 +233,35 @@ public class Graph implements Cloneable, Serializable {
 			}
 		}
 		return count;
+	}
+	public Integer[] getAllArrowsValues() {
+		ArrayList<Integer> arrows = new ArrayList<Integer>();
+		int i;
+		for (i = 0; i < data.size(); i++) {
+			if (!data.get(i)[2].equals("*")) {
+				arrows.add(Integer.parseInt(data.get(i)[2]));
+			}
+		}
+		Integer[] farrows = new Integer[arrows.size()];
+		for (i = 0; i < arrows.size(); i++) {
+			farrows[i] = arrows.get(i);
+		}
+		return farrows;
+	}
+	// Recupere les valeurs des fleches sortantes d'un sommet dans une liste d'entiers
+	public Integer[] getOutgoingArrowsValuesOf(String vertex) {
+		ArrayList<Integer> arrows = new ArrayList<Integer>();
+		int i;
+		for (i =0; i < data.size(); i++) {
+			if (data.get(i)[0].equals(vertex)) {
+				arrows.add(Integer.parseInt(data.get(i)[2]));
+			}
+		}
+		Integer[] farrows = new Integer[arrows.size()];
+		for (i = 0; i < arrows.size(); i++) {
+			farrows[i] = arrows.get(i);
+		}
+		return farrows;
 	}
 	//FIN METHODES POUR LES ARCS
 	

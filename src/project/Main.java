@@ -40,6 +40,8 @@ public class Main {
 				// Calcul de rangs
 				ranksCalc(graph);
 				
+				// Verification d'un graphe d'ordonnancement correct
+				correctDigraphVerification(graph);
 				
 				
 				nb = -1;
@@ -140,7 +142,7 @@ public class Main {
 			// On supprime les points d'entree
 			System.out.println("Suppression des points d'entrée");
 			for (int i = 0; i < sv.length; i++) {
-				tempGraph.removeVertex(sv[i]);
+				tempGraph.removeVertexByName(sv[i]);
 			}
 			// On recupere les points restants
 			System.out.println("Points restants");
@@ -173,7 +175,7 @@ public class Main {
 			String[] sv = tempGraph.getSourceVertices();
 			// On supprime les points d'entree
 			for (int i = 0; i < sv.length; i++) {
-				tempGraph.removeVertex(sv[i]);
+				tempGraph.removeVertexByName(sv[i]);
 			}
 			// On recupere les points restants
 			pr = tempGraph.getAllVertices();
@@ -184,7 +186,6 @@ public class Main {
 		}
 		return ic;
 	}
-	
 	
 	// Calcule les rangs de chaque sommet du graphe.
 	public static void ranksCalc(Graph graph) {
@@ -216,6 +217,92 @@ public class Main {
 		} else {
 			System.out.println("On ne peut pas étudier les rangs des sommets car le graphe contient au moins un circuit.");
 		}
+	}
+	
+	
+	
+	public static void correctDigraphVerification(Graph graph) {
+		Boolean[] conditions = getCorrectDigraphVerification(graph);
+		
+		System.out.println();
+		System.out.println("\n* Verification d'un graphe d'ordonnancement correct:\n");
+		
+		System.out.println("Un seul point d'entree: " + conditions[0]);
+		System.out.println("Un seul point de sortie: " + conditions[1]);
+		System.out.println("Pas de circuit: " + conditions[2]);
+		System.out.println("Les arcs sortants de chaque sommet sont de valeur identique: " + conditions[3]);
+		System.out.println("Les arcs sortants du point d'entree sont de valeur nulle: " + conditions[4]);
+		System.out.println("Pas d'arcs a valeur negative: " + conditions[5]);
+		
+		if (Arrays.stream(conditions).allMatch(s -> s.equals(true))) {
+			System.out.println("\nGraphe d'ordonnancement correct.");
+		} else {
+			System.out.println("\nGraphe d'ordonnancement incorrect.");
+		}
+		
+	}
+	
+	public static Boolean[] getCorrectDigraphVerification(Graph graph) {
+		Boolean[] conditions = new Boolean[6];
+		Arrays.fill(conditions, Boolean.FALSE);
+		
+		int i;
+		
+		if (graph.getSourceVertices().length == 1) {
+			// Verifie qu'il n'y a qu'un point d'entree
+			conditions[0] = true;
+			
+			// Verifie que les arcs sortant du point d'entree sont = 0 (null)
+			String sourceVertex = graph.getSourceVertices()[0];
+			Integer[] outgoingArrows = graph.getOutgoingArrowsValuesOf(sourceVertex);
+			boolean arrowsEqualZero = true;
+			i = 0;
+			while (arrowsEqualZero == true && i < outgoingArrows.length) {
+				if (outgoingArrows[i] != 0) {
+					arrowsEqualZero = false;
+				}
+				i++;
+			}
+			conditions[4] = arrowsEqualZero;
+		}
+			
+
+		//Verifie qu'il n'y a q'un point de sortie
+		if (graph.getSinkVertices().length == 1)
+			conditions[1] = true;
+
+		//Verifie qu'il n'y a pas de cycle
+		if (!isCyclic(graph.deepClone()))
+			conditions[2] = true;
+		
+		//Verifie qu'il n'y a pas d'arcs a valeur negative
+		Integer[] allArrows = graph.getAllArrowsValues();
+		boolean positiveArrows = true;
+		i = 0;
+		while (positiveArrows == true && i < allArrows.length) {
+			if (allArrows[i] < 0) {
+				positiveArrows = false;
+			}
+			i++;
+		}
+		conditions[5] = positiveArrows;
+		
+		//Verifie si les arcs sortants de chaque sommet sont de valeurs identique
+		String[] lv = graph.getLeftVertices();
+		boolean same = true;
+		i=0;
+		while(same == true && i < lv.length) {
+			Integer[] outgoingArrows = graph.getOutgoingArrowsValuesOf(lv[i]);
+			if(!Arrays.stream(outgoingArrows).allMatch(s -> s.equals(outgoingArrows[0]))) {
+				same = false;
+			}
+			i++;
+		}
+		conditions[3] = same;
+		
+		
+		return conditions;
+		
 	}
 	
 	
