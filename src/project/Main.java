@@ -212,7 +212,7 @@ public class Main {
 				}
 			}
 		} else {
-			System.out.println("On ne peut pas étudier les rangs de chaque sommet du graphe car il contient au moins un circuit.");
+			System.out.println("On ne peut pas étudier les rangs des sommets car le graphe contient au moins un circuit.");
 		}
 	}
 	
