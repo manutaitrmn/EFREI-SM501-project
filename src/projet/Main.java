@@ -40,11 +40,11 @@ public class Main {
 				
 				// Lecture de la matrice d'adjacence
 				System.out.println();
-				graph.readAdjacencyMatrix();
-				
+				//graph.readAdjacencyMatrix();
+
 				// Lecture de la matrice de valeurs
 				System.out.println();
-				graph.readValuesMatrix();
+				//graph.readValuesMatrix();
 				
 				// Detection de circuit
 				System.out.println();
@@ -88,7 +88,8 @@ public class Main {
 				System.out.println(Arrays.deepToString(pr));
 			} else {
 				System.out.println("Aucun");
-			}	
+			}
+			// graph.checkVertices();
 		}
 		System.out.println("Points d'entrée \nAucun");
 		// Si il existe toujours des sommets, alors le graphe contient au moins un circuit sinon etc...

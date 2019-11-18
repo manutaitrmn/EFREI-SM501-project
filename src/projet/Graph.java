@@ -120,23 +120,37 @@ public class Graph {
 	
 	// Recupere les points d'entrée sous forme de liste d'entiers
 	public String[] getSourceVertices() {
-		String[] lv = removeDuplicates(getLeftVertices());
-		String[] lr = removeDuplicates(getRightVertices());
+		String[] lv = getLeftVertices();
+		String[] rv = getRightVertices();
 		ArrayList<String> sv = new ArrayList<String>();
 		for (int i = 0; i < lv.length; i++) {
-			if (!Arrays.asList(lr).contains(lv[i])) {
+			if (!Arrays.asList(rv).contains(lv[i]) && !lv[i].contains("*")) {
 				sv.add(lv[i]);
+			} else if (lv[i].contains("*")) {
+				sv.add(rv[i]);
 			}
 		}
 		String[] result = new String[sv.size()];
 		for (int i = 0; i < sv.size(); i++) {
 			result[i] = sv.get(i);
 		}
-		return result;
-		
+		return removeDuplicates(result);	
 	}
 	
-	
+	public String[] removeStars(String[] list) {
+		ArrayList<String> av = new ArrayList<String>();
+        int i;
+        for (i = 0; i < list.length; i++) {
+        	if (!list[i].contains("*")) {
+        		av.add(list[i]);
+        	}
+        }
+        String[] finalResult = new String[av.size()];
+        for (i = 0; i < av.size(); i++) {
+        	finalResult[i] = av.get(i);
+        }
+        return finalResult;
+	}
 	
 	
 	//METHODES POUR LES SOMMETS
@@ -165,7 +179,9 @@ public class Graph {
         String[] result = new String[aLen + bLen];
         System.arraycopy(array1, 0, result, 0, aLen);
         System.arraycopy(array2, 0, result, aLen, bLen);
-        return removeDuplicates(result);
+        result = removeDuplicates(result);
+        return removeStars(result);
+        
     }
 	// Recupere le nombre de sommets total du graphe
 	public int getNumberVertices() {
@@ -175,13 +191,41 @@ public class Graph {
 	public void removeVertex(String v) {
 		ArrayList<String[]> toBeRemoved = new ArrayList<String[]>();
 		String[] lv = getLeftVertices();
-		String[] lr = getRightVertices();
+		String[] rv = getRightVertices();
 		for (int i = 0; i < graph.size(); i++) {
-			if (lv[i].equals(v) || lr[i].equals(v)) {
+			if (rv[i].equals(v)) {
+				toBeRemoved.add(graph.get(i));
+			} else if (lv[i].equals(v)) {
+				graph.set(i, new String[] {"*",graph.get(i)[1],"*"});
+			}
+		}
+		graph.removeAll(toBeRemoved);
+		checkVertices();
+	}
+	public void checkVertices() {
+		ArrayList<String[]> toBeRemoved = new ArrayList<String[]>();
+		String[] lv = getLeftVertices();
+		String[] rv = getRightVertices();
+		for (int i = 0; i < graph.size(); i++) {
+			if (lv[i].equals("*") && (Arrays.asList(lv).contains(rv[i]) || Arrays.asList(getVerticesExceptOneByIndex(rv, i)).contains(rv[i]))) {
 				toBeRemoved.add(graph.get(i));
 			}
 		}
 		graph.removeAll(toBeRemoved);
+	}
+	// Filtre une liste de String
+	public String[] getVerticesExceptOneByIndex(String[] List, int index) {
+		ArrayList<String> newList = new ArrayList<String>();
+		for (int i = 0; i < List.length; i++) {
+			if (i != index) {
+				newList.add(List[i]);
+			}
+		}
+		String[] result = new String[newList.size()];
+		for (int i = 0; i < result.length; i++) {
+			result[i] = newList.get(i);
+		}
+		return result;
 	}
 	// FIN METHODES POUR LES SOMMETS
 
