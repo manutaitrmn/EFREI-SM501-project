@@ -21,7 +21,7 @@ public class Main {
 
 			while (nb != -1) {
 				// Recupere le fichier txt du graphe à étudier
-				String file = new File("").getAbsolutePath() + "/src/projet/Graphe" + nb + ".txt";
+				String file = new File("").getAbsolutePath() + "/src/projet/graphs/Graphe" + nb + ".txt";
 				// On instancie le graphe
 				Graph graph = new Graph(file);
 
