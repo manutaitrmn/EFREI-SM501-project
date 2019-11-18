@@ -1,4 +1,4 @@
-package projet;
+package project;
 
 import java.io.IOException;
 import java.util.Scanner;
@@ -21,7 +21,7 @@ public class Main {
 
 			while (nb != -1) {
 				// Recupere le fichier txt du graphe à étudier
-				String file = new File("").getAbsolutePath() + "/src/projet/graphs/" + nb + ".txt";
+				String file = new File("").getAbsolutePath() + "/src/graphs/" + nb + ".txt";
 				// On instancie le graphe
 				Graph graph = new Graph(file);
 
