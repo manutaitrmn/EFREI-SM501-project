@@ -41,29 +41,7 @@ public class Graph implements Cloneable, Serializable {
 	}
 	
 	
-	//@Override
-	//public Graph clone() throws CloneNotSupportedException {
-	//	Graph newGraph = (Graph) super.clone();
-	//	newGraph.setData(null);
-	//	newGraph.data = this.data;
-	//	return newGraph;
-	//}
 	
-	public Graph deepClone() {
-		try {
-			ByteArrayOutputStream baos = new ByteArrayOutputStream();
-			ObjectOutputStream oos = new ObjectOutputStream(baos);
-			oos.writeObject(this);
-
-			ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
-			ObjectInputStream ois = new ObjectInputStream(bais);
-			return (Graph) ois.readObject();
-		} catch (IOException e) {
-			return null;
-		} catch (ClassNotFoundException e) {
-			return null;
-		}
-	}
 
 
 	// Recupere la MATRICE D'ADJACENCE sous forme de tableau d'entiers a 2 dimensions
@@ -125,20 +103,30 @@ public class Graph implements Cloneable, Serializable {
 	
 	// Recupere tous les sommets possedant des fleches sortantes dans une liste de string (les sommets de gauche dans le txt)
 	public String[] getLeftVertices() {
-		String[] lv = new String[getNumberArcs()];
-		for (int i = 0; i < getNumberArcs(); i++) {
-			lv[i] = data.get(i)[0];
+		ArrayList<String> lv = new ArrayList<String>();
+		int i;
+		for ( i = 0; i < data.size(); i++) {
+			lv.add(data.get(i)[0]);
 		}
-		return lv;
+		String[] flv = new String[lv.size()];
+		for (i = 0; i < lv.size(); i++) {
+			flv[i] = lv.get(i);
+		}
+		return flv;
 	}
 	
 	// Recupere tous les sommets possedant des fleches entrantes dans une liste de string (les sommets de droite dans le txt)
 	public String[] getRightVertices() {
-		String[] lr = new String[getNumberArcs()];
-		for (int i = 0; i < getNumberArcs(); i++) {
-			lr[i] = data.get(i)[1];
+		ArrayList<String> rv = new ArrayList<String>();
+		int i;
+		for ( i = 0; i < data.size(); i++) {
+			rv.add(data.get(i)[1]);
 		}
-		return lr;
+		String[] frv = new String[rv.size()];
+		for (i = 0; i < rv.size(); i++) {
+			frv[i] = rv.get(i);
+		}
+		return frv;
 	}
 	
 	// Recupere tous les sommets du graphe dans une liste de string
@@ -208,15 +196,23 @@ public class Graph implements Cloneable, Serializable {
 	
 	
 	
-	// RECUPERER LE NOMBRE D'ARCS
+	// Recupere le nombre d'arcs
 	public int getNumberArcs() {
-		return data.size();
+		String[] lv = getLeftVertices();
+		int count = 0;
+		for (int i = 0; i < lv.length; i++) {
+			if (!lv[i].contains("*")) {
+				count++;
+			}
+		}
+		return count;
 	}
 	
-	// RECUPERER LE GRAPHE SOUS FORME DE TABLEAU A 2D
+	// Recupere les donnees du graphe sous forme d'un tableau 2D
 	public ArrayList<String[]> getData() {
 		return data;
 	}
+	
 	
 	public void setData(ArrayList<String[]> data) {
 		this.data = data;
@@ -248,5 +244,20 @@ public class Graph implements Cloneable, Serializable {
         return finalResult;
 	}
 	
-	
+	// Cloner un objet graph
+	public Graph deepClone() {
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(baos);
+			oos.writeObject(this);
+
+			ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+			ObjectInputStream ois = new ObjectInputStream(bais);
+			return (Graph) ois.readObject();
+		} catch (IOException e) {
+			return null;
+		} catch (ClassNotFoundException e) {
+			return null;
+		}
+	}
 }
