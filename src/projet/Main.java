@@ -50,6 +50,15 @@ public class Main {
 				System.out.println();
 				detectCycle(graph);
 				
+				// Calcul de rangs
+				System.out.println();
+				System.out.println("Calcul de rangs");
+				if (isCyclic(graph)) {
+					
+				} else {
+					System.out.println("On ne peut pas étudier les rangs du graphe car il contient au moins un circuit.");
+				}
+				
 				nb = -1;				
 				
 			}
@@ -98,6 +107,34 @@ public class Main {
 		} else {
 			System.out.println("Le graphe contient au moins un circuit.");
 		}
-		
+	}
+	
+	public static boolean isCyclic(Graph graph) {
+		boolean ic = false;
+		Graph tempGraph = graph;
+		// On recupere tous les sommets
+		String[] pr = tempGraph.getAllVertices();
+		//Tant qu'il y a toujours des points d'entre
+		while (tempGraph.getSourceVertices().length != 0) {
+			// On recupere les points d'entree
+			String[] sv = tempGraph.getSourceVertices();
+			// On supprime les points d'entree
+			for (int i = 0; i < sv.length; i++) {
+				tempGraph.removeVertex(sv[i]);
+			}
+			// On recupere les points restants
+			pr = tempGraph.getAllVertices();
+			if (pr.length != 0) {
+				System.out.println(Arrays.deepToString(pr));
+			} else {
+				System.out.println("Aucun");
+			}
+			// graph.checkVertices();
+		}
+		// Si il existe toujours des sommets, alors le graphe contient au moins un circuit sinon etc...
+		if (pr.length != 0) {
+			ic = true;
+		}
+		return ic;
 	}
 }
