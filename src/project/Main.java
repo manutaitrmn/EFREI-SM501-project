@@ -39,7 +39,7 @@ public class Main {
 				detectCycle(graph);
 
 				// Calcul de rangs
-				//ranksCalc(graph);
+				ranksCalc(graph);
 				nb = -1;				
 			}
 			
@@ -186,9 +186,15 @@ public class Main {
 	
 	// Calcule les rangs de chaque sommet du graphe.
 	public static void ranksCalc(Graph graph) {
-		System.out.println("\nCalcul de rangs");
-		if (!isCyclic(graph)) {
-			
+		System.out.println("\n* Calcul des rangs par élimination des points d'entrée \n");
+		if (!isCyclic(graph.deepClone())) {
+			ArrayList<String[]> ranks = graph.deepClone().getAllVerticesRanks();
+			for (int i = 0; i < ranks.size(); i++) {
+				System.out.println("Rang courant = " + i);
+				System.out.println("Points d'entrée:");
+				System.out.println(Arrays.toString(ranks.get(i)));
+			}
+			System.out.println("Graphe vide");
 		} else {
 			System.out.println("On ne peut pas étudier les rangs de chaque sommet du graphe car il contient au moins un circuit.");
 		}
