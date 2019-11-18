@@ -195,6 +195,22 @@ public class Main {
 				System.out.println(Arrays.toString(ranks.get(i)));
 			}
 			System.out.println("Graphe vide");
+			System.out.println("Rangs calculés");
+			for (int i = 0; i < graph.getNumberVertices()+1; i++) {
+				if (i == 0) {
+					System.out.printf("%6s", "Sommet");
+				} else {
+					System.out.printf("%6s", i-1);
+				}
+			}
+			System.out.println();
+			for (int i = 0; i < graph.getNumberVertices()+1; i++) {
+				if (i == 0) {
+					System.out.printf("%6s", "Rang");
+				} else {
+					System.out.printf("%6s", graph.deepClone().getVertexRankByName(Integer.toString(i-1)));
+				}
+			}
 		} else {
 			System.out.println("On ne peut pas étudier les rangs de chaque sommet du graphe car il contient au moins un circuit.");
 		}

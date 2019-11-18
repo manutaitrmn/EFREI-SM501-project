@@ -55,7 +55,7 @@ public class Graph implements Cloneable, Serializable {
             }
         }
 		for (int i = 0; i < data.size(); i++) {
-			if (!data.get(i)[0].contains("*")) {
+			if (!data.get(i)[0].equals("*")) {
 				m[Integer.parseInt(data.get(i)[0])][Integer.parseInt(data.get(i)[1])] = "1";
 			}
 		}
@@ -71,7 +71,7 @@ public class Graph implements Cloneable, Serializable {
             }
         }
 		for (int i = 0; i < data.size(); i++) {
-			if (!data.get(i)[0].contains("*")) {
+			if (!data.get(i)[0].equals("*")) {
 				m[Integer.parseInt(data.get(i)[0])][Integer.parseInt(data.get(i)[1])] = data.get(i)[2];
 			}
 		}
@@ -173,7 +173,6 @@ public class Graph implements Cloneable, Serializable {
 	// Recupere les sommets classés par rangs dans un tableau 2d
 	public ArrayList<String[]> getAllVerticesRanks() {
 		// On recupere tous les sommets
-		String[] pr;
 		ArrayList<String[]> ranks = new ArrayList<String[]>();
 		//Tant qu'il y a toujours des points d'entre
 		while (getSourceVertices().length != 0) {
@@ -184,8 +183,6 @@ public class Graph implements Cloneable, Serializable {
 			for (int i = 0; i < sv.length; i++) {
 				removeVertex(sv[i]);
 			}
-			// On recupere les points restants
-			pr = getAllVertices();
 		}
 		return ranks;
 	}
@@ -196,7 +193,7 @@ public class Graph implements Cloneable, Serializable {
 		int i = 0;
 		while (rank == null && i < ranks.size()) {
 			for (int j = 0; j < ranks.get(i).length; j++) {
-				if (ranks.get(i)[j].contains(vertexName)) {
+				if (ranks.get(i)[j].equals(vertexName)) {
 					rank = Integer.toString(i);
 				}
 			}
@@ -215,7 +212,7 @@ public class Graph implements Cloneable, Serializable {
 		String[] lv = getLeftVertices();
 		int count = 0;
 		for (int i = 0; i < lv.length; i++) {
-			if (!lv[i].contains("*")) {
+			if (!lv[i].equals("*")) {
 				count++;
 			}
 		}
@@ -249,7 +246,7 @@ public class Graph implements Cloneable, Serializable {
 		ArrayList<String> av = new ArrayList<String>();
         int i;
         for (i = 0; i < list.length; i++) {
-        	if (!list[i].contains("*")) {
+        	if (!list[i].equals("*")) {
         		av.add(list[i]);
         	}
         }
