@@ -21,15 +21,14 @@ public class Main {
 
 			while (nb != -1) {
 				
-				// Déclaration des types de variables
+				// Declaration des types de variables
 				String file;
 				Graph graph;
 				
-				// Récupération du fichier txt du graphe à étudier
+				// Recupere le fichier txt du graphe à étudier
 				file = new File("").getAbsolutePath() + "/src/projet/Graphe" + nb + ".txt";
 				
-				// Conversion du graphe en tableau 2D à partir du fichier txt
-				// graph = convert(file);
+				// On instancie le graphe
 				graph = new Graph(file);
 				
 				// Lecture du graphe
