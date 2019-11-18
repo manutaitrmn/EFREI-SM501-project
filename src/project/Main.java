@@ -28,7 +28,6 @@ public class Main {
 				// Lecture du graphe
 				readGraph(graph);
 				
-				
 				// Lecture de la matrice d'adjacence
 				readAdjacencyMatrix(graph);
 
@@ -40,16 +39,19 @@ public class Main {
 
 				// Calcul de rangs
 				ranksCalc(graph);
-				nb = -1;				
+				
+				
+				
+				nb = -1;
+				
 			}
 			
-			System.out.println();
-			System.out.println("Fin");
+			System.out.println("\nFin");
 			action.close();
 			
 		} catch (Exception e) {
 			
-			System.err.println(e + "Un problème est survenu");
+			System.err.println("Un problème est survenu :" + e);
 			
 		}
 	}
