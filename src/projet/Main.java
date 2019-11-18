@@ -20,41 +20,26 @@ public class Main {
 			int nb = action.nextInt();
 
 			while (nb != -1) {
-				
-				// Declaration des types de variables
-				String file;
-				Graph graph;
-				
 				// Recupere le fichier txt du graphe à étudier
-				file = new File("").getAbsolutePath() + "/src/projet/Graphe" + nb + ".txt";
-				
+				String file = new File("").getAbsolutePath() + "/src/projet/Graphe" + nb + ".txt";
 				// On instancie le graphe
-				graph = new Graph(file);
-				
+				Graph graph = new Graph(file);
+
 				// Lecture du graphe
-				System.out.println();
 				readGraph(graph);
 				
+				
 				// Lecture de la matrice d'adjacence
-				System.out.println();
 				readAdjacencyMatrix(graph);
 
 				// Lecture de la matrice de valeurs
-				System.out.println();
 				readValuesMatrix(graph);
 				
-				// Detection de circuit
-				System.out.println();
+				// Detection de circuit				
 				detectCycle(graph);
-				
+
 				// Calcul de rangs
-				System.out.println();
-				System.out.println("Calcul de rangs");
-				if (!isCyclic(graph)) {
-					
-				} else {
-					System.out.println("On ne peut pas étudier les rangs du graphe car il contient au moins un circuit.");
-				} 
+				//ranksCalc(graph);
 				nb = -1;				
 			}
 			
@@ -72,7 +57,7 @@ public class Main {
 	
 	// Lecture du graphe
 	public static void readGraph(Graph graph) {
-		System.out.println("* Lecture du graphe \n");
+		System.out.println("\n* Lecture du graphe \n");
 		ArrayList<String[]> graphData = graph.getData();
 		System.out.println(graph.getNumberVertices() + " sommets");
 		System.out.println(graph.getNumberArcs() + " arcs");
@@ -84,7 +69,7 @@ public class Main {
 	
 	// Lecture de la matrice d'adjacence
 	public static void readAdjacencyMatrix(Graph graph) {
-		System.out.println("* Lecture de la matrice d'adjacence \n");
+		System.out.println("\n* Lecture de la matrice d'adjacence \n");
 		String[][] m = graph.getAdjacencyMatrix();
 		for (int row = 0; row < m.length+1; row++) {
             for (int col = 0; col < m.length+1; col++) {
@@ -108,9 +93,10 @@ public class Main {
         }
 	}
 	
+	
 	// Lecture de la matrice de valeurs
 	public static void readValuesMatrix(Graph graph) {
-		System.out.println("* Lecture de la matrice de valeurs \n");
+		System.out.println("\n* Lecture de la matrice de valeurs \n");
 		String[][] m = graph.getValuesMatrix();
 		for (int row = 0; row < m.length+1; row++) {
             for (int col = 0; col < m.length+1; col++) {
@@ -139,9 +125,9 @@ public class Main {
 	
 	// Detection de cycle d'un graphe
 	public static void detectCycle(Graph graph) {
-		System.out.println("* Detection de circuit \n");
-		Graph tempGraph = graph;
+		System.out.println("\n* Detection de circuit \n");
 		// On recupere tous les sommets
+		Graph tempGraph = graph.deepClone();
 		String[] pr = tempGraph.getAllVertices();
 		//Tant qu'il y a toujours des points d'entre
 		while (tempGraph.getSourceVertices().length != 0) {
@@ -162,7 +148,6 @@ public class Main {
 			} else {
 				System.out.println("Aucun");
 			}
-			// graph.checkVertices();
 		}
 		System.out.println("Points d'entrée \nAucun");
 		// Si il existe toujours des sommets, alors le graphe contient au moins un circuit sinon etc...
@@ -177,7 +162,7 @@ public class Main {
 	// Renvoie un booleen (true si le graphe contient un cycle, sinon false)
 	public static boolean isCyclic(Graph graph) {
 		boolean ic = false;
-		Graph tempGraph = graph;
+		Graph tempGraph = graph.deepClone();
 		// On recupere tous les sommets
 		String[] pr = tempGraph.getAllVertices();
 		//Tant qu'il y a toujours des points d'entre
@@ -190,17 +175,23 @@ public class Main {
 			}
 			// On recupere les points restants
 			pr = tempGraph.getAllVertices();
-			if (pr.length != 0) {
-				System.out.println(Arrays.deepToString(pr));
-			} else {
-				System.out.println("Aucun");
-			}
 		}
 		// Si il existe toujours des sommets, alors le graphe contient au moins un circuit sinon etc...
 		if (pr.length != 0) {
 			ic = true;
 		}
 		return ic;
+	}
+	
+	
+	// Calcule les rangs de chaque sommet du graphe.
+	public static void ranksCalc(Graph graph) {
+		System.out.println("\nCalcul de rangs");
+		if (!isCyclic(graph)) {
+			
+		} else {
+			System.out.println("On ne peut pas étudier les rangs de chaque sommet du graphe car il contient au moins un circuit.");
+		}
 	}
 	
 	

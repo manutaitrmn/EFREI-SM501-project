@@ -1,15 +1,24 @@
 package projet;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
+import java.io.ByteArrayInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Graph {
+public class Graph implements Cloneable, Serializable {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private ArrayList<String[]> data;
-	
+
 	
 	// Le constructeur
 	public Graph(String file) {
@@ -28,11 +37,35 @@ public class Graph {
 		} catch (IOException e) {
 			System.err.format("IOException: %s%n", e);
 		}
-		data = converted;
-	}	
+		this.data = converted;
+	}
 	
 	
+	//@Override
+	//public Graph clone() throws CloneNotSupportedException {
+	//	Graph newGraph = (Graph) super.clone();
+	//	newGraph.setData(null);
+	//	newGraph.data = this.data;
+	//	return newGraph;
+	//}
 	
+	public Graph deepClone() {
+		try {
+			ByteArrayOutputStream baos = new ByteArrayOutputStream();
+			ObjectOutputStream oos = new ObjectOutputStream(baos);
+			oos.writeObject(this);
+
+			ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
+			ObjectInputStream ois = new ObjectInputStream(bais);
+			return (Graph) ois.readObject();
+		} catch (IOException e) {
+			return null;
+		} catch (ClassNotFoundException e) {
+			return null;
+		}
+	}
+
+
 	// Recupere la MATRICE D'ADJACENCE sous forme de tableau d'entiers a 2 dimensions
 	public String[][] getAdjacencyMatrix() {
 		int nbv = getNumberVertices();
@@ -49,8 +82,7 @@ public class Graph {
 		}
 		return m;
 	}
-	
-	
+
 	// Recupere la MATRICE DE VALEURS sous formes de tableau d'entiers a 2 dimensions
 	public String[][] getValuesMatrix() {
 		int nbv = getNumberVertices();
@@ -184,6 +216,10 @@ public class Graph {
 	// RECUPERER LE GRAPHE SOUS FORME DE TABLEAU A 2D
 	public ArrayList<String[]> getData() {
 		return data;
+	}
+	
+	public void setData(ArrayList<String[]> data) {
+		this.data = data;
 	}
 	
 	
