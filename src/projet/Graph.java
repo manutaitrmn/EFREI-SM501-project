@@ -36,7 +36,7 @@ public class Graph {
 	
 	// Lecture du graphe
 	public void read() {
-		System.out.println("* Lecture du graphe");
+		System.out.println("* Lecture du graphe \n");
 		System.out.println(getNumberVertices() + " sommets");
 		System.out.println(getNumberArcs() + " arcs");
 		for (int i = 0; i < graph.size(); i++) {
@@ -52,7 +52,7 @@ public class Graph {
 	// METHODES POUR LA MATRICE D'ADJACENCE
 	// Lecture de la matrice d'adjacence
 	public void readAdjacencyMatrix() {
-		System.out.println("Lecture de la matrice d'adjacence");
+		System.out.println("* Lecture de la matrice d'adjacence \n");
 		String[][] m = getAdjacencyMatrix();
 		for (int row = 0; row < m.length; row++) {
             for (int col = 0; col < m[row].length; col++) {
@@ -87,7 +87,7 @@ public class Graph {
 	// METHODE POUR LA MATRICE DE VALEURS
 	// Lecture de la matrice de valeurs
 	public void readValuesMatrix() {
-		System.out.println("Lecture de la matrice de valeurs");
+		System.out.println("* Lecture de la matrice de valeurs \n");
 		String[][] m = getValuesMatrix();
 		for (int row = 0; row < m.length; row++) {
             for (int col = 0; col < m[row].length; col++) {

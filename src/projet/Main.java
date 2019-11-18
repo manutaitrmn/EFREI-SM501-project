@@ -66,7 +66,7 @@ public class Main {
 	}
 	
 	public static void detectCycle(Graph graph) {
-		System.out.println("* Detection de circuit");
+		System.out.println("* Detection de circuit \n");
 		Graph tempGraph = graph;
 		// On recupere tous les sommets
 		String[] pr = tempGraph.getAllVertices();
