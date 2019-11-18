@@ -40,11 +40,11 @@ public class Main {
 				
 				// Lecture de la matrice d'adjacence
 				System.out.println();
-				//graph.readAdjacencyMatrix();
+				graph.readAdjacencyMatrix();
 
 				// Lecture de la matrice de valeurs
 				System.out.println();
-				//graph.readValuesMatrix();
+				graph.readValuesMatrix();
 				
 				// Detection de circuit
 				System.out.println();

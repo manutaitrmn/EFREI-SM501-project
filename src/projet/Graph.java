@@ -71,7 +71,9 @@ public class Graph {
             }
         }
 		for (int i = 0; i < graph.size(); i++) {
-			m[Integer.parseInt(graph.get(i)[0])][Integer.parseInt(graph.get(i)[1])] = "1";
+			if (!graph.get(i)[0].contains("*")) {
+				m[Integer.parseInt(graph.get(i)[0])][Integer.parseInt(graph.get(i)[1])] = "1";
+			}
 		}
 		return m;
 	}
@@ -109,7 +111,9 @@ public class Graph {
             }
         }
 		for (int i = 0; i < graph.size(); i++) {
-			m[Integer.parseInt(graph.get(i)[0])][Integer.parseInt(graph.get(i)[1])] = graph.get(i)[2];
+			if (!graph.get(i)[0].contains("*")) {
+				m[Integer.parseInt(graph.get(i)[0])][Integer.parseInt(graph.get(i)[1])] = graph.get(i)[2];
+			}
 		}
 		return m;
 	}
