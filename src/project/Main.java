@@ -310,4 +310,36 @@ public class Main {
 	public static String[] removeDuplicates(String[] list) {
 		return Arrays.stream(list).distinct().toArray(String[]::new);
 	}
+	
+	public static void earlycalendar(Graph graph)
+	{
+		int arc = graph.getNumberArcs();
+		String[][] Bellman = new String[arc][arc];
+		
+		//Initialisation
+		for (int i = 0 ; i < arc ; i++)
+		{
+			if(i != Integer.parseInt(graph.getSourceVertices()[0]))
+			{
+				Bellman[0][i] = "Vide";
+			} 
+			else {
+				Bellman[0][i] = 0 + "/" + i;
+			}
+		}
+		int compteurArc;
+		int somme;
+		
+		for (int j =1 ; j < arc ; j++)
+		{
+			compteurArc = j;
+			while ( compteurArc != 0)
+			{
+				
+				compteurArc --;
+			}
+		}
+		//graph.getLeftVertices()
+		//graph.getOutgoingArrowsValuesOf("1")[0]
+	}
 }
