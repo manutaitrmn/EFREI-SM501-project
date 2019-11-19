@@ -17,7 +17,6 @@ public class Graph implements Cloneable, Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
 	private ArrayList<String[]> data;
 
 	
