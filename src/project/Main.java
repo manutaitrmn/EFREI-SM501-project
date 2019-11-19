@@ -330,16 +330,18 @@ public class Main {
 		int compteurArc;
 		int somme;
 		
-		for (int j =1 ; j < arc ; j++)
+		for (int k =1 ; k < arc ; k++)
 		{
 			compteurArc = j;
 			while ( compteurArc != 0)
 			{
-				
+				for (int )
 				compteurArc --;
 			}
 		}
 		//graph.getLeftVertices()
+		graph.getRightVertices()
+		graph.getAllArrowsValues()//int
 		//graph.getOutgoingArrowsValuesOf("1")[0]
 	}
 }
