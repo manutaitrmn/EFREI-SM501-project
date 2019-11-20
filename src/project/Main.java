@@ -310,4 +310,77 @@ public class Main {
 	public static String[] removeDuplicates(String[] list) {
 		return Arrays.stream(list).distinct().toArray(String[]::new);
 	}
+	
+	
+	public static void earlycalendar(Graph graph)
+	{
+		int arc = graph.getNumberArcs();
+		String[][] Bellman = new String[arc][arc];
+		
+		int entree = 0;
+		
+		//Initialisation
+		for (int i = 0 ; i < arc ; i++)
+		{
+			if(i != Integer.parseInt(graph.getSourceVertices()[0]))// Si i != sommet d'entrée
+			{
+				Bellman[0][i] = "Vide";
+			} 
+			else 
+			{
+				Bellman[0][i] = 0 + "/" + i;
+				entree = i;
+			}
+		}
+		int compteurArc;
+		int somme = 0;
+		int sommeMemoire=0;
+		int sommet = entree;
+		
+		boolean test= false;
+		
+		while(test == false) // Tant qu'il existe des chemins courts
+		{
+			for (int k =1 ; k < arc ; k++)
+			{
+				compteurArc = k;
+				
+				Bellman[k][entree]= 0 + "/" + entree;
+					
+				if( k == 1) // k=1 Iteration
+				{
+					for ( int s = 0 ; s < graph.getNumberVertices() ; s++)
+					{
+						if ( entree == Integer.parseInt(graph.getLeftVertices()[s]))
+						{
+							Bellman[1][s] = String.valueOf(graph.getOutgoingArrowsValuesOf("s")) + "/" + entree;
+						}
+					}
+				}
+						
+				else
+				{
+					while ( compteurArc != 0)// Pour chaque itération
+					{
+						for ( int j = 0 ; j < Bellman[k-1].length ; j++)
+						{
+							for ( int q = 0 ; q < graph.getNumberVertices() ; q++)
+							{
+								if (Bellman[k-1][j] == graph.getLeftVertices()[q])
+								{
+									String[] Ligne = Bellman[k-1][entree].split("/");
+									somme = somme + Integer.parseInt(Ligne[0]);
+								}
+							}
+						}
+						compteurArc--;
+					}
+				}
+			}
+		}
+		//graph.getLeftVertices()
+		//graph.getRightVertices()
+		//graph.getAllArrowsValues()//int
+		//graph.getOutgoingArrowsValuesOf("1")[0]
+	}
 }
