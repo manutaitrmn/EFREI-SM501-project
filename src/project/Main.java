@@ -15,8 +15,10 @@ public class Main {
 			int nb = action.nextInt();
 
 			while (nb > -1) {
+				
 				//Recupere le fichier txt du graphe à étudier
 				String file = new File("").getAbsolutePath() + "/src/graphs/L3NEW-TG-C9-g" + nb + ".txt";
+				
 				//On instancie le graphe
 				Graph graph = new Graph(file);
 
@@ -41,10 +43,11 @@ public class Main {
 				//Affiche les calendriers
 				graph.readSchedules();
 
+				//Etudier un autre graphe
 				System.out.println("\n\n\nEtudier un autre graphe? (-1 pour quitter)");
-
 				action = new Scanner(System.in);
 				nb = action.nextInt();
+				
 			}
 
 			System.out.println("\nFin");
