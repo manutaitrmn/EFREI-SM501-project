@@ -8,38 +8,34 @@ public class Main {
 
 	public static void main(String[] args) throws IOException {
 		try {
-			// Demande a l'utilisateur de choisir le graphe
+			//Demande a l'utilisateur de choisir le graphe
 			System.out.println("Quel graphe voulez vous etudier? (-1 pour quitter)");
-			// Récupération de la saisie de l'utilisateur
+			//Récupération de la saisie de l'utilisateur
 			Scanner action = new Scanner(System.in);
 			int nb = action.nextInt();
 
 			while (nb > -1) {
-				// Recupere le fichier txt du graphe à étudier
+				//Recupere le fichier txt du graphe à étudier
 				String file = new File("").getAbsolutePath() + "/src/graphs/" + nb + ".txt";
-				// On instancie le graphe
+				//On instancie le graphe
 				Graph graph = new Graph(file);
 
-				// Lecture du graphe
+				//Lecture du graphe
 				graph.read();
 				
-				// Lecture de la matrice d'adjacence
+				//Lecture de la matrice d'adjacence
 				graph.readAdjacencyMatrix();
 
-				// Lecture de la matrice de valeurs
+				//Lecture de la matrice de valeurs
 				graph.readValuesMatrix();
 				
-				// Detection de circuit				
+				//Detection de circuit				
 				graph.detectCycle();
 
-				// Calcul de rangs
+				//Calcul de rangs
 				graph.ranksCalc();
-				
-				
-				
-				
-				
-				// Verification d'un graphe d'ordonnancement correct
+			
+				//Verification d'un graphe d'ordonnancement correct
 				graph.correctDigraphVerification();
 				
 				
@@ -49,12 +45,10 @@ public class Main {
 				//System.out.println(graph.latest("10"));
 				//graph.read();
 				
-				System.out.println("\n\n\n\nEtudier un autre graphe? (-1 pour quitter)");
+				System.out.println("\n\n\nEtudier un autre graphe? (-1 pour quitter)");
 				
 				action = new Scanner(System.in);
 				nb = action.nextInt();
-				
-				
 			}
 			
 			System.out.println("\nFin");
