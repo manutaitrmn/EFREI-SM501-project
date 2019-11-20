@@ -38,12 +38,8 @@ public class Main {
 				//Verification d'un graphe d'ordonnancement correct
 				graph.correctDigraphVerification();
 				
-				
-				
-				
+				//Affiche les calendriers
 				graph.readSchedules();
-				//System.out.println(graph.latest("10"));
-				//graph.read();
 				
 				System.out.println("\n\n\nEtudier un autre graphe? (-1 pour quitter)");
 				
