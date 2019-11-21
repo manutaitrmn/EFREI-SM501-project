@@ -12,7 +12,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Graph implements Cloneable, Serializable {
+public class Graph extends Exception implements Cloneable, Serializable {
 	
 	/**
 	 * 
@@ -32,6 +32,7 @@ public class Graph implements Cloneable, Serializable {
 				String[] l = line.split(" ");
 				String[] ints = new String[l.length];
 				for (int i = 0 ; i < l.length ; i++) {
+					Integer.parseInt(l[i]);
 					ints[i] = l[i];
 				}
 				converted.add(ints);

@@ -19,34 +19,42 @@ public class Main {
 				//Recupere le fichier txt du graphe à étudier
 				String file = new File("").getAbsolutePath() + "/src/graphs/L3NEW-TG-C9-g" + nb + ".txt";
 				
+				Graph graph = null;
+				
 				//On instancie le graphe
-				Graph graph = new Graph(file);
+				try {
+					graph = new Graph(file);
+					
+					//Lecture du graphe
+					graph.read();
 
-				//Lecture du graphe
-				graph.read();
+					//Lecture de la matrice d'adjacence
+					graph.readAdjacencyMatrix();
 
-				//Lecture de la matrice d'adjacence
-				graph.readAdjacencyMatrix();
+					//Lecture de la matrice de valeurs
+					graph.readValuesMatrix();
 
-				//Lecture de la matrice de valeurs
-				graph.readValuesMatrix();
+					//Detection de circuit
+					graph.detectCycle();
 
-				//Detection de circuit
-				graph.detectCycle();
+					//Calcul de rangs
+					graph.ranksCalc();
 
-				//Calcul de rangs
-				graph.ranksCalc();
+					//Verification d'un graphe d'ordonnancement correct
+					graph.correctDigraphVerification();
 
-				//Verification d'un graphe d'ordonnancement correct
-				graph.correctDigraphVerification();
-
-				//Affiche les calendriers
-				graph.readSchedules();
-
-				//Etudier un autre graphe
-				System.out.println("\n\n\nEtudier un autre graphe? (-1 pour quitter)");
-				action = new Scanner(System.in);
-				nb = action.nextInt();
+					//Affiche les calendriers
+					graph.readSchedules();
+					
+					//Etudier un autre graphe
+					System.out.println("\n\n\nEtudier un autre graphe? (-1 pour quitter)");
+					action = new Scanner(System.in);
+					nb = action.nextInt();
+					
+				} catch(NumberFormatException e) {
+					System.out.println("Le fichier .txt doit contenir que des entiers.");
+					nb = -1;
+				}
 				
 			}
 
