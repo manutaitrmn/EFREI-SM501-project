@@ -43,7 +43,6 @@ public class Graph extends Exception implements Cloneable, Serializable {
 		}
 		this.data = converted;
 	}
-
 	
 	//METHODES DE LECTURE
 	
