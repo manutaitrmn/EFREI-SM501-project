@@ -741,7 +741,5 @@ public class Graph extends Exception implements Cloneable, Serializable {
 		return array;
 	}
 
-
-
 }
 
