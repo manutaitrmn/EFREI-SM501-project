@@ -579,37 +579,48 @@ public class Graph extends Exception implements Cloneable, Serializable {
 			
 			String[] allNodes = getAllNodes();
 			int i;
+			String sep = "";
+			for (i = 0; i < allNodes.length+2; i++) {
+				sep += "-----";
+			}
+			System.out.println(sep);
 			for (i = 0; i < allNodes.length+1; i++) {
 				if (i == 0) {
-					System.out.printf("%8s", "Tache");
+					System.out.printf("%10s", "Tache |");
 				} else {
-					System.out.printf("%8s", i-1);
+					System.out.printf("%5s", i-1 + " |");
+				}
+				
+			}
+			System.out.println();
+			System.out.println(sep);
+			for (i = 0; i < allNodes.length+1; i++) {
+				if (i == 0) {
+					System.out.printf("%10s", "DAPTot |");
+				} else {
+					System.out.printf("%5s", earliest(Integer.toString(i-1)) + " |");
 				}
 			}
 			System.out.println();
+			System.out.println(sep);
 			for (i = 0; i < allNodes.length+1; i++) {
 				if (i == 0) {
-					System.out.printf("%8s", "DAPTot");
+					System.out.printf("%10s", "DAPTard |");
 				} else {
-					System.out.printf("%8s", earliest(Integer.toString(i-1)));
+					System.out.printf("%5s", latest(Integer.toString(i-1)) + " |");
 				}
 			}
 			System.out.println();
+			System.out.println(sep);
 			for (i = 0; i < allNodes.length+1; i++) {
 				if (i == 0) {
-					System.out.printf("%8s", "DAPTard");
+					System.out.printf("%10s", "Marges |");
 				} else {
-					System.out.printf("%8s", latest(Integer.toString(i-1)));
+					System.out.printf("%5s", latest(Integer.toString(i-1))-earliest(Integer.toString(i-1)) + " |");
 				}
 			}
 			System.out.println();
-			for (i = 0; i < allNodes.length+1; i++) {
-				if (i == 0) {
-					System.out.printf("%8s", "Marges");
-				} else {
-					System.out.printf("%8s", latest(Integer.toString(i-1))-earliest(Integer.toString(i-1)));
-				}
-			}
+			System.out.println(sep);
 			
 		} else {
 			System.out.println("Ce graphe ne respecte pas les conditions d'un graphe d'ordonnancement correct.");
