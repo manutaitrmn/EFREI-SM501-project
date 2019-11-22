@@ -644,7 +644,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 		int sl = succ.length;
 		if (sl != 0) {
 			String min;
-			if (sl == 1) {s
+			if (sl == 1) {
 				min = succ[0];
 			} else {
 				min = succ[0];
