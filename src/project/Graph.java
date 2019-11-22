@@ -628,7 +628,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 			} else {
 				max = preds[0];
 				for (int i = 1; i < pl; i++) {
-					if (earliest(preds[i]) > earliest(max)) {
+					if ((earliest(preds[i])+Integer.parseInt(getArcValueBetween(preds[i], node))) > (earliest(max)+ Integer.parseInt(getArcValueBetween(max, node)))) {
 						max = preds[i];
 					}
 				}
@@ -645,7 +645,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 		int sl = succ.length;
 		if (sl != 0) {
 			String min;
-			if (sl == 1) {
+			if (sl == 1) {s
 				min = succ[0];
 			} else {
 				min = succ[0];
@@ -655,8 +655,8 @@ public class Graph extends Exception implements Cloneable, Serializable {
 					}
 				}
 			}
-			int arcValue = (-1)*Integer.parseInt(getArcValueBetween(node, min));
-			return arcValue + latest(min);
+			int arcValue = Integer.parseInt(getArcValueBetween(node, min));
+			return latest(min) - arcValue;
 		} else {
 			return earliest(getSinkNodes()[0]);
 		}
