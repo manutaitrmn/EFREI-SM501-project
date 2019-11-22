@@ -433,28 +433,40 @@ public class Graph extends Exception implements Cloneable, Serializable {
 		System.out.println("\n* Calcul des rangs par elimination des points d'entree \n");
 		if (!isCyclic()) {
 			ArrayList<String[]> ranks = deepClone().getAllNodesRanks();
-			for (int i = 0; i < ranks.size(); i++) {
+			int i;
+			for (i = 0; i < ranks.size(); i++) {
 				System.out.println("Rang courant = " + i);
 				System.out.println("Points d'entree:");
 				System.out.println(Arrays.toString(ranks.get(i)));
 			}
+			
 			System.out.println("Graphe vide");
 			System.out.println("Rangs calcules");
-			for (int i = 0; i < getNumberOfNodes()+1; i++) {
+			
+			String sep = "--------";
+			for (i = 0; i < getNumberOfNodes(); i++) {
+				sep += "------";
+			}
+			System.out.println(sep);
+			
+			for (i = 0; i < getNumberOfNodes()+1; i++) {
 				if (i == 0) {
-					System.out.printf("%6s", "Sommet");
+					System.out.printf("%8s", "Sommet |");
 				} else {
-					System.out.printf("%6s", i-1);
+					System.out.printf("%6s", i-1 + " |");
 				}
 			}
 			System.out.println();
-			for (int i = 0; i < getNumberOfNodes()+1; i++) {
+			System.out.println(sep);
+			for (i = 0; i < getNumberOfNodes()+1; i++) {
 				if (i == 0) {
-					System.out.printf("%6s", "Rang");
+					System.out.printf("%8s", "Rang |");
 				} else {
-					System.out.printf("%6s", deepClone().getNodeRankByName(Integer.toString(i-1)));
+					System.out.printf("%6s", deepClone().getNodeRankByName(Integer.toString(i-1)) + " |");
 				}
 			}
+			System.out.println();
+			System.out.println(sep);
 		} else {
 			System.out.println("On ne peut pas etudier les rangs des sommets car le graphe contient au moins un circuit.");
 		}
