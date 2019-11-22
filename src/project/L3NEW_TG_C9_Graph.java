@@ -12,7 +12,7 @@ import java.io.ObjectInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public class Graph extends Exception implements Cloneable, Serializable {
+public class L3NEW_TG_C9_Graph extends Exception implements Cloneable, Serializable {
 	
 	/**
 	 * 
@@ -24,7 +24,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 
 	
 	//Constructeur
-	public Graph(String file) {
+	public L3NEW_TG_C9_Graph(String file) {
 		ArrayList<String[]> converted = new ArrayList<String[]>();
 		try (FileReader fr = new FileReader(file); BufferedReader br = new BufferedReader(fr)) {
 			String line;
@@ -371,7 +371,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 	public void detectCycle() {
 		System.out.println("\n* Detection de circuit \n");
 		// On recupere tous les sommets
-		Graph tempGraph = deepClone();
+		L3NEW_TG_C9_Graph tempGraph = deepClone();
 		String[] pr = tempGraph.getAllNodes();
 		//Tant qu'il y a toujours des points d'entre
 		while (tempGraph.getSourceNodes().length != 0) {
@@ -404,7 +404,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 	// Renvoie un booleen vrai ou faux si le graphe contient au moins un graphe ou pas
 	public boolean isCyclic() {
 		boolean ic = false;
-		Graph tempGraph = deepClone();
+		L3NEW_TG_C9_Graph tempGraph = deepClone();
 		// On recupere tous les sommets
 		String[] pr = tempGraph.getAllNodes();
 		//Tant qu'il y a toujours des points d'entre
@@ -733,7 +733,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 		return result;
 	}
 	//Cloner un objet graph
-	public Graph deepClone() {
+	public L3NEW_TG_C9_Graph deepClone() {
 		try {
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 			ObjectOutputStream oos = new ObjectOutputStream(baos);
@@ -741,7 +741,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 
 			ByteArrayInputStream bais = new ByteArrayInputStream(baos.toByteArray());
 			ObjectInputStream ois = new ObjectInputStream(bais);
-			return (Graph) ois.readObject();
+			return (L3NEW_TG_C9_Graph) ois.readObject();
 		} catch (IOException e) {
 			return null;
 		} catch (ClassNotFoundException e) {

@@ -1,6 +1,6 @@
 package project;
 
-public class graphExceptions extends Exception {
+public class L3NEW_TG_C9_graphExceptions extends Exception {
 
 	/**
 	 * 

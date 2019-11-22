@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.io.File;
 
-public class Main {
+public class L3NEW_TG_C9_Main {
 
 	public static void main(String[] args) throws IOException {
 		try {
@@ -16,14 +16,14 @@ public class Main {
 
 			while (nb > -1) {
 				
-				//Recupere le fichier txt du graphe à étudier
+				//Recupere le fichier txt du graphe a�etudier
 				String file = new File("").getAbsolutePath() + "/src/graphs/L3NEW-TG-C9-g" + nb + ".txt";
 				
-				Graph graph = null;
+				L3NEW_TG_C9_Graph graph = null;
 				
 				//On instancie le graphe
 				try {
-					graph = new Graph(file);
+					graph = new L3NEW_TG_C9_Graph(file);
 					
 					//Lecture du graphe
 					graph.read();
