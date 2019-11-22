@@ -10,7 +10,7 @@ public class Main {
 		try {
 			//Demande a l'utilisateur de choisir le graphe
 			System.out.println("Quel graphe voulez vous etudier? (-1 pour quitter)");
-			//Récupération de la saisie de l'utilisateur
+			//Recuperation de la saisie de l'utilisateur
 			Scanner action = new Scanner(System.in);
 			int nb = action.nextInt();
 
@@ -63,7 +63,7 @@ public class Main {
 
 		} catch (Exception e) {
 
-			System.err.println("Un problème est survenu :" + e);
+			System.err.println("Un probleme est survenu :" + e);
 
 		}
 	}

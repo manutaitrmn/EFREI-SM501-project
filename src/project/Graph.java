@@ -1,6 +1,6 @@
 package  project;
 
-//Librairies nécessaires
+//Librairies necessaires
 import java.io.BufferedReader;
 import java.io.ByteArrayOutputStream;
 import java.io.ByteArrayInputStream;
@@ -19,7 +19,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	//Variable principale contenant toutes les données du graphe.
+	//Variable principale contenant toutes les donnees du graphe.
 	private ArrayList<String[]> data;
 
 	
@@ -239,7 +239,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 		data.removeAll(toBeRemoved);
 		checkNodes();
 	}
-	//Vérifie les liaisons inutiles et les supprime
+	//Verifie les liaisons inutiles et les supprime
 	public void checkNodes() {
 		ArrayList<String[]> toBeRemoved = new ArrayList<String[]>();
 		String[] lv = getLeftNodes();
@@ -251,7 +251,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 		}
 		data.removeAll(toBeRemoved);
 	}
-	//Recupere les sommets classés par rangs dans un tableau 2d
+	//Recupere les sommets classes par rangs dans un tableau 2d
 	public ArrayList<String[]> getAllNodesRanks() {
 		// On recupere tous les sommets
 		ArrayList<String[]> ranks = new ArrayList<String[]>();
@@ -377,10 +377,10 @@ public class Graph extends Exception implements Cloneable, Serializable {
 		while (tempGraph.getSourceNodes().length != 0) {
 			// On recupere les points d'entree
 			String[] sv = tempGraph.getSourceNodes();
-			System.out.println("Points d'entrée");
+			System.out.println("Points d'entree");
 			System.out.println(Arrays.deepToString(sv));
 			// On supprime les points d'entree
-			System.out.println("Suppression des points d'entrée");
+			System.out.println("Suppression des points d'entree");
 			for (int i = 0; i < sv.length; i++) {
 				tempGraph.removeVertexByName(sv[i]);
 			}
@@ -393,7 +393,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 				System.out.println("Aucun");
 			}
 		}
-		System.out.println("Points d'entrée \nAucun");
+		System.out.println("Points d'entree \nAucun");
 		// Si il existe toujours des sommets, alors le graphe contient au moins un circuit sinon etc...
 		if (pr.length == 0) {
 			System.out.println("Le graphe contient aucun circuit.");
@@ -430,16 +430,16 @@ public class Graph extends Exception implements Cloneable, Serializable {
 	
 	//Affiche les rangs de chaque sommet
 	public void ranksCalc() {
-		System.out.println("\n* Calcul des rangs par élimination des points d'entrée \n");
+		System.out.println("\n* Calcul des rangs par elimination des points d'entree \n");
 		if (!isCyclic()) {
 			ArrayList<String[]> ranks = deepClone().getAllNodesRanks();
 			for (int i = 0; i < ranks.size(); i++) {
 				System.out.println("Rang courant = " + i);
-				System.out.println("Points d'entrée:");
+				System.out.println("Points d'entree:");
 				System.out.println(Arrays.toString(ranks.get(i)));
 			}
 			System.out.println("Graphe vide");
-			System.out.println("Rangs calculés");
+			System.out.println("Rangs calcules");
 			for (int i = 0; i < getNumberOfNodes()+1; i++) {
 				if (i == 0) {
 					System.out.printf("%6s", "Sommet");
@@ -456,7 +456,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 				}
 			}
 		} else {
-			System.out.println("On ne peut pas étudier les rangs des sommets car le graphe contient au moins un circuit.");
+			System.out.println("On ne peut pas etudier les rangs des sommets car le graphe contient au moins un circuit.");
 		}
 	}
 	//Recupere le rang d'un sommet en donnant le nom du sommet
@@ -627,7 +627,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 			} else {
 				max = preds[0];
 				for (int i = 1; i < pl; i++) {
-					if (earliest(preds[i]) > earliest(max)) {
+					if ((earliest(preds[i])+Integer.parseInt(getArcValueBetween(preds[i], node))) > (earliest(max)+ Integer.parseInt(getArcValueBetween(max, node)))) {
 						max = preds[i];
 					}
 				}
@@ -644,7 +644,7 @@ public class Graph extends Exception implements Cloneable, Serializable {
 		int sl = succ.length;
 		if (sl != 0) {
 			String min;
-			if (sl == 1) {
+			if (sl == 1) {s
 				min = succ[0];
 			} else {
 				min = succ[0];
@@ -654,8 +654,8 @@ public class Graph extends Exception implements Cloneable, Serializable {
 					}
 				}
 			}
-			int arcValue = (-1)*Integer.parseInt(getArcValueBetween(node, min));
-			return arcValue + latest(min);
+			int arcValue = Integer.parseInt(getArcValueBetween(node, min));
+			return latest(min) - arcValue;
 		} else {
 			return earliest(getSinkNodes()[0]);
 		}
