@@ -9,14 +9,14 @@ public class L3NEW_TG_C9_Main {
 	public static void main(String[] args) throws IOException {
 		try {
 			//Demande a l'utilisateur de choisir le graphe
-			System.out.println("Quel graphe voulez vous etudier? (-1 pour quitter)");
+			System.out.println("Quel graphe voulez vous Ã©tudier? (-1 pour quitter)");
 			//Recuperation de la saisie de l'utilisateur
 			Scanner action = new Scanner(System.in);
 			int nb = action.nextInt();
 
 			while (nb > -1) {
 				
-				//Recupere le fichier txt du graphe a etudier
+				//Recupere le fichier txt du graphe aï¿½etudier
 				String file = new File("").getAbsolutePath() + "/src/graphs/L3NEW-TG-C9-g" + nb + ".txt";
 				
 				L3NEW_TG_C9_Graph graph = null;
