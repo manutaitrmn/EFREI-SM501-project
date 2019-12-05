@@ -27,6 +27,7 @@ tomcat
 *.ipr
 .idea/
 out/
+bin/
 
 # NetBeans specific
 nbproject/private/
@@ -49,5 +50,3 @@ release.properties
 pom.xml.releaseBackup
 pom.xml.tag
 /bin/
-
-*.md
