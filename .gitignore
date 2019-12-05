@@ -25,6 +25,7 @@ tomcat
 *.iws
 *.ipr
 .idea/
+out/
 
 # NetBeans specific
 nbproject/private/
