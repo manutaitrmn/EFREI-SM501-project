@@ -1,12 +1,5 @@
-#
-# Project specific excludes
-#
-
+# tomcat
 tomcat
-
-#
-# Default excludes
-#
 
 # Binaries
 *.7z
@@ -22,19 +15,16 @@ tomcat
 *.sar
 *.class
 
-# Maven
-target/
+# eclipse project file
+.settings/
+.classpath
+.project
 
 # IntelliJ project files
 *.iml
 *.iws
 *.ipr
 .idea/
-
-# eclipse project file
-.settings/
-.classpath
-.project
 
 # NetBeans specific
 nbproject/private/
@@ -45,6 +35,8 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 
+# Maven
+target/
 
 # OS
 .DS_Store
