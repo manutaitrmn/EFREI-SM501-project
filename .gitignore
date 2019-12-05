@@ -17,9 +17,9 @@ tomcat
 
 # eclipse project file
 .settings/
-.classpath
-.project
-src/module-info.java
+*.classpath
+*.project
+**/module-info*
 
 # IntelliJ project files
 *.iml
@@ -48,3 +48,4 @@ target/
 release.properties
 pom.xml.releaseBackup
 pom.xml.tag
+/bin/
