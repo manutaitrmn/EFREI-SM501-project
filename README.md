@@ -10,3 +10,6 @@
 - Cliquez sur `finish` puis `create`
 - Le projet est bien importé et crée, il ne reste plus qu'à localiser le fichier main (L3NEW_TG_C9_Main.java)
 - Clique droit sur ce fichier, et Exécuter (`Run as`puis cliquez sur la première option).
+- Vous êtes tout bon ! normalement...
+
+### Importer dans IntelliJ
