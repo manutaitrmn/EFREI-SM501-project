@@ -12,7 +12,7 @@
 - Clique droit sur ce fichier, et Exécuter (`Run as`puis cliquez sur la première option).
 - Vous êtes tout bon ! normalement...
 
-### Importer dans IntelliJ
+### Importer dans IntelliJ IDEA
 - Clonez le projet là ou vous avez l'habitude de cloner ou de mettre vos projets de développement
 - Ouvrez IntelliJ IDEA et cliquez sur `Import Project`
 - Sélectionnez le dossier du projet cloné que vous avez mis qlq part dans votre bordel et faites `Ouvrir`
