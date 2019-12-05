@@ -19,6 +19,7 @@ tomcat
 .settings/
 .classpath
 .project
+src/module-info.java
 
 # IntelliJ project files
 *.iml
