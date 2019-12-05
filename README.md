@@ -13,3 +13,10 @@
 - Vous êtes tout bon ! normalement...
 
 ### Importer dans IntelliJ
+- Clonez le projet là ou vous avez l'habitude de cloner ou de mettre vos projets de développement
+- Ouvrez IntelliJ IDEA et cliquez sur `Import Project`
+- Sélectionnez le dossier du projet cloné que vous avez mis qlq part dans votre bordel et faites `Ouvrir`
+- Choisissez `Create project from existing sources`
+- Puis spammez les `Next` jusqu'à cliquer sur `Finish`
+- Voilà le projet importé et créé. Localisez le fichier main (L3NEW_TG_C9_Main) et exécutez-le en faisant un clique droit sur ce dernier puis `Run 'L3NEW...'` 
+- Peace
