@@ -4,7 +4,7 @@
 ### Importer dans Eclipse
 - Cloner le projet dans le workspace d'Eclipse (vous l'aviez normalement choisi lors de l'installation de l'IDE, il se situe souvent ici : `Documents/eclipse`)
 - Une fois cloné, ouvrez Eclipse en choisissant le bon workspace (celui dans lequel vous venez de cloner lol)
-- Si vous avez une page d'accueil Eclipse inutile, fermez-là en cliquant sur la croix en haut à droite
+- Si vous avez une page d'accueil Eclipse inutile, fermez-là en cliquant sur la croix en haut à gauche
 - Dans le package explorer (barre latérale gauche), cliquez sur `Create a Java project`
 - Dans le champ `Project name`, rentrez exactement le même nom que le projet cloné soit ...
 - Cliquez sur `finish` puis `create`
