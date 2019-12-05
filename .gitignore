@@ -49,3 +49,5 @@ release.properties
 pom.xml.releaseBackup
 pom.xml.tag
 /bin/
+
+*.md
