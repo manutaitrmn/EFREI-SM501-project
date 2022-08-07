@@ -8,7 +8,7 @@ L3New Promo 2022
 - Dans le package explorer (barre latérale gauche), cliquez sur `Create a Java project`
 - Dans le champ `Project name`, rentrez exactement le même nom que celui du projet cloné soit `EFREI-SM501-project`
 - Cliquez sur `finish` puis `create`
-- Le projet est bien importé et crée, il ne reste plus qu'à localiser le fichier main (L3NEW_TG_C9_Main.java)
+- Le projet est bien importé et créé, il ne reste plus qu'à localiser le fichier main (L3NEW_TG_C9_Main.java)
 - Clique droit sur ce fichier, et Exécuter (`Run as`puis cliquez sur la première option).
 - Vous êtes tout bon ! normalement...
 
